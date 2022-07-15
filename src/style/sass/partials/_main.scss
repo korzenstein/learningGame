@@ -1,0 +1,87 @@
+.main {
+  background: rgb(0, 55, 0);
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-y: hidden;
+  padding: 0;
+  margin: 0;
+  /* display: flex; */
+  /* flex-direction: column; */
+
+  .wrapper {
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+    max-width: 1240px;
+    width: 80%;
+    .sectionContainer {
+      max-width: 600px;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      grid-template-areas: "inner-div";
+      position: relative;
+      .inner {
+        // height: 100px;
+        // width: 100px;
+        grid-area: inner-div;
+        width: 100%;
+        height: 100%;
+      }
+      .backImg {
+        z-index: 10;
+      }
+      .fox,
+      .racoon {
+        z-index: 30;
+      }
+      #racoonHead {
+        cursor: pointer;
+        z-index: 30;
+      }
+
+      #foxHead {
+        cursor: pointer;
+        z-index: 30;
+      }
+    }
+  }
+}
+
+.racoonText {
+  z-index: 20;
+  pointer-events: none;
+}
+
+.racoonBubble {
+  border-radius: 15px;
+  background: #00bfb6;
+  color: #fff;
+  padding: 0.5rem 0.6rem;
+  text-align: center;
+  font-weight: 900;
+  font-family: arial;
+  position: relative;
+  z-index: 20;
+
+  .racoonBubble:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 1.5vh solid #00bfb6;
+    border-right: 1.5vh solid transparent;
+    border-top: 1.9vh solid #00bfb6;
+    border-bottom: 1vh solid transparent;
+    left: 5%;
+    bottom: -30%;
+    z-index: 0;
+  }
+  p {
+    font-size: clamp(0.3rem, 3vh, 1rem);
+    margin: 0;
+  }
+}
