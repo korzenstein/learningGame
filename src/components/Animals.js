@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import RacoonText from './RacoonText'
+// import RacoonText from './RacoonText'
 
-const Animals = () => {
+const Animals = ({handleRacoon}) => {
   return (
       <svg
         className="racoon inner"
@@ -17,11 +17,17 @@ const Animals = () => {
         preserveAspectRatio="none"
       >
         <motion.g
-            id="foxHead"
+          id="foxHead"
+          animate={{rotate: [0, 2.9, 0]}}
+          transition={{ ease: "easeInOut", duration: 1.5, repeat: Infinity }}
           whileHover={{
-            rotate: 2.3,
-            transition: { duration: 1 },
+            rotate: 0,
+            transition: {ease: "easeInOut", duration: 1.4}
           }}
+          
+
+
+
           fillRule="evenodd"
           clipRule="evenodd"
         >
@@ -1191,10 +1197,14 @@ const Animals = () => {
             ></path>
           </g>
           <motion.g
-            whileHover={{
-              rotate: 2.3,
-              transition: { duration: 1 },
-            }}
+            animate={{rotate: [0, 3, 0]}}
+          transition={{ ease: "easeInOut", duration: 1.2, repeat: Infinity }}
+          whileHover={{
+            rotate: 0,
+            transition: {ease: "easeInOut"}
+          }}
+          onClick={handleRacoon}
+          
             id="racoonHead"
           >
             <path

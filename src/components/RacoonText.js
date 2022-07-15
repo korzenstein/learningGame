@@ -5,15 +5,15 @@ const RacoonText = () => {
 
     const [loadRacoon, setLoadRacoon] = useState(true)
     return (
-        // <div className="inner racoonText">
-        <div className="racoonBubble ">
+        <div className="racoonTextContainer inner">
+        <div className="racoonText">
             {
                 loadRacoon ?
                 <p>{racoonTalk.main.intro}</p>
                 :null
             }
         </div>
-        // </div>
+     </div>
     )
 }
 

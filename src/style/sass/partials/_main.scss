@@ -1,11 +1,14 @@
 .main {
-  background: rgb(0, 55, 0);
+  background: rgb(13, 13, 13);
   height: 100vh;
   width: 100%;
   position: relative;
   overflow-y: hidden;
   padding: 0;
   margin: 0;
+  display: flex;
+    justify-content: center;
+    align-items: center;
   /* display: flex; */
   /* flex-direction: column; */
 
@@ -51,37 +54,43 @@
   }
 }
 
-.racoonText {
+.racoonTextContainer {
   z-index: 20;
   pointer-events: none;
+  margin-top: 3rem;
+  max-width: 60%;
 }
 
-.racoonBubble {
+.racoonText {
+  transition: 0.5s ease-in-out all;
   border-radius: 15px;
   background: #00bfb6;
-  color: #fff;
   padding: 0.5rem 0.6rem;
   text-align: center;
-  font-weight: 900;
-  font-family: arial;
   position: relative;
   z-index: 20;
 
-  .racoonBubble:before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 1.5vh solid #00bfb6;
-    border-right: 1.5vh solid transparent;
-    border-top: 1.9vh solid #00bfb6;
-    border-bottom: 1vh solid transparent;
-    left: 5%;
-    bottom: -30%;
-    z-index: 0;
-  }
+  
   p {
+    color: #fff;
+    font-weight: 900;
+    transition: 0.5s ease-in-out all;
     font-size: clamp(0.3rem, 3vh, 1rem);
     margin: 0;
+    font-family: 'Courier New', Courier, monospace;
   }
+}
+.racoonText:before {
+  transition: 0.5s ease-in-out all;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 1.5vh solid #00bfb6;
+  border-right: 1.5vh solid transparent;
+  border-top: 1.9vh solid #00bfb6;
+  border-bottom: 1vh solid transparent;
+  left: 5%;
+  bottom: -17px;
+  z-index: 0;
 }

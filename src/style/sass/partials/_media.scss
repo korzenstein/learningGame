@@ -1,0 +1,11 @@
+@media (max-width: 440px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .wrapper {
+                width: 100%;
+            }
+    }
+    
+}
