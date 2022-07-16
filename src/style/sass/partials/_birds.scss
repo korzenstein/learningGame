@@ -1,0 +1,90 @@
+#birdBottomTail, 
+#birdRightTail,
+#birdLeftTail {
+    z-index: 25;
+    animation: shakeBirds 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    animation-iteration-count: infinite;
+}
+
+#birdRightTail {
+    animation-delay: 0.7s;
+}
+
+#birdLeftTail {
+    animation-delay: .5s
+}
+
+#birdBottom,
+#birdRight,
+#birdLeft {
+    z-index: 30;
+    &:hover {
+        cursor: pointer;
+
+    }
+}
+
+@keyframes shakeBirds {
+
+    10%,
+    90% {
+        transform: translate3d(-0.01%, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(0.01%, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-0.01%, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(0.08%, 0, 0);
+    }
+}
+
+
+@keyframes shakeMush {
+
+    10%,
+    90% {
+        transform: translate3d(-0.01%, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(0.01%, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-0.03%, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(0.7%, 0, 0);
+    }
+}
+
+// mushrooms
+
+#mushroom1, 
+#mushroom2,
+#mushroom3,
+#mushroom4,
+#mushroom5,
+#mushroom6,
+#mushroom7 {
+    &:hover, 
+    &:focus {
+        cursor: pointer;
+        animation: shakeMush 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    }
+}

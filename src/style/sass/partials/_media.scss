@@ -1,3 +1,31 @@
+@media (max-width: 540px) {
+    .main {
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // flex-direction: column;
+
+        .wrapper {
+        flex-direction: column;
+        justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+        .uiLeft,
+        .uiRight {
+            width: 100px;
+            height: 100px;
+            .textBox,
+            .shoppeContainer {
+                flex-direction: row;
+            }
+        }
+
+
+}
+
+
 @media (max-width: 440px) {
     .main {
         display: flex;

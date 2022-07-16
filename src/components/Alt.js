@@ -1,7 +1,7 @@
 import racoonTalk from '../textData/racoonTalk'
 import {motion, AnimatePresence} from 'framer-motion'
 
-const Alt = ({loadRacoon}) => {
+const Alt = ({loadRacoon, handleShoppe}) => {
 
     return (
         <>
@@ -14,7 +14,14 @@ const Alt = ({loadRacoon}) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="inner alt">
-                <p className="altText">{racoonTalk.main.intro}</p>
+                <p 
+                onClick={() => (console.log('words'))}
+                className="altText">{racoonTalk.main.intro}
+                
+                <button 
+                className="testButton"
+                onClick={handleShoppe}>Shoppe Here!</button>
+                </p>
                 </motion.div>
                 :null
             }
