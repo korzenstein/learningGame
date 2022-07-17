@@ -55,7 +55,7 @@ const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
           >
 
             {
-              toggleAPI ?
+              toggleAPI && aiText !== undefined  ?
               <p className="foxText">{aiText}</p>
               :
 

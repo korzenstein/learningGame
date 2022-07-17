@@ -7,7 +7,7 @@ const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdCo
   const [concatPrompt, setConcatPrompt] = useState("")
   
   useEffect(() => {
-    setConcatPrompt(`The CSS code for a color like ${userInput}:\nbackground-color: `)
+    setConcatPrompt(`The CSS code for a color ${userInput}:\nbackground-color: `)
   }, [userInput])
 
   // const [aiText, setAiText] = useState(undefined)
@@ -54,7 +54,7 @@ const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdCo
           >
 
             <p className="moodBirdText">
-              I am the mood bird. How are you feeling today?
+              They call me the "mood bird". Using a simile, tell me how you're feeling today.
             </p>
           </motion.div>
         ) : null}

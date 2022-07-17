@@ -52,7 +52,7 @@ const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userIn
             className="inner badgerBubble"
           >
             {
-              toggleAPI ?
+              toggleAPI && aiText !== undefined ?
               <p className="badgerText">{aiText}</p>
               :
 
