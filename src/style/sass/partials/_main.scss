@@ -43,10 +43,10 @@
         z-index: 10;
       }
       .fox,
-      .racoon {
+      .badger {
         z-index: 30;
       }
-      #racoonHead {
+      #badgerHead {
         cursor: pointer;
         z-index: 30;
       }
@@ -59,43 +59,5 @@
   }
 }
 
-.racoonTextContainer {
-  z-index: 20;
-  pointer-events: none;
-  margin-top: 3rem;
-  max-width: 60%;
-}
-
-.racoonText {
-  transition: 0.5s ease-in-out all;
-  border-radius: 15px;
-  background: #00bfb6;
-  padding: 0.5rem 0.6rem;
-  text-align: center;
-  position: relative;
-  z-index: 20;
 
   
-  p {
-    color: #fff;
-    font-weight: 900;
-    transition: 0.5s ease-in-out all;
-    font-size: clamp(0.3rem, 3vh, 1rem);
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-  }
-}
-.racoonText:before {
-  transition: 0.5s ease-in-out all;
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 1.5vh solid #00bfb6;
-  border-right: 1.5vh solid transparent;
-  border-top: 1.9vh solid #00bfb6;
-  border-bottom: 1vh solid transparent;
-  left: 5%;
-  bottom: -17px;
-  z-index: 0;
-}

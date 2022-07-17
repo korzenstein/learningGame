@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+$color-blue: #486b5c;
+$color-green: #c8c8a9;
+$color-brown: #774f38;
+$color-beige: #ece5ce;
+$color-yellow: #f9cdad;
+$color-pink: #fe4365;
+
+
+.foxBubble {
+    align-self: flex-start;
+    z-index: 30;
+    max-width: 60%;
+    margin-top: 11%;
+    margin-left: 5%;
+    // height: 35%;
+    .foxText {
+            transform: translatey(0px);
+            animation: float 5s ease-in-out infinite;
+            mix-blend-mode: multiply;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: clamp(0.5rem, 1.1vh, 1.9rem);
+            color: $color-beige;
+            background-color: $color-blue;
+            padding: 0.6rem;
+            border-radius: 11px;
+            position: relative;
+            box-shadow: 1rem 1rem $color-beige;
+            font-family: "Baloo 2", cursive;
+            // border: 1px solid $color-green;
+        }
+    
+        .foxText:after {
+            transform: translatey(0px);
+            animation: float2 5s ease-in-out infinite;
+            content: ".";
+            font-weight: bold;
+            text-shadow: 22px 22px $color-beige;
+            text-align: left;
+            font-size: 55px;
+            width: 55px;
+            height: 11px;
+            line-height: 30px;
+            border-radius: 11px;
+            background-color: $color-blue;
+            position: absolute;
+            display: block;
+            bottom: -30px;
+            right: 0;
+            box-shadow: 1rem 1rem $color-beige;
+            z-index: -10;
+        }
+}
+
+
+
+.badgerBubble {
+    align-self: flex-start;
+    z-index: 30;
+    max-width: 60%;
+    margin-top: 4%;
+    // height: 35%;
+    .badgerText {
+            transform: translatey(0px);
+            animation: float 5s ease-in-out infinite;
+            mix-blend-mode: multiply;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: clamp(0.5rem, 1.1vh, 1.9rem);
+            color: $color-brown;
+            background-color: $color-beige;
+            padding: 0.6rem;
+            border-radius: 11px;
+            position: relative;
+            box-shadow: 1rem 1rem $color-blue;
+            font-family: "Baloo 2", cursive;
+            // border: 1px solid $color-green;
+        }
+    
+        .badgerText:after {
+            transform: translatey(0px);
+            animation: float2 5s ease-in-out infinite;
+            content: ".";
+            font-weight: bold;
+            text-shadow: 22px 22px $color-blue;
+            text-align: left;
+            font-size: 55px;
+            width: 55px;
+            height: 11px;
+            line-height: 30px;
+            border-radius: 11px;
+            background-color: $color-beige;
+            position: absolute;
+            display: block;
+            bottom: -30px;
+            left: 0;
+            box-shadow: 1rem 1rem $color-blue;
+            z-index: -10;
+        }
+}
+
+
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-10px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+.userBubble {
+    align-self: flex-end;
+    z-index: 30;
+    max-width: 60%;
+    margin-bottom: 14%;
+
+    // height: 35%;
+    .userText {
+        transform: translatey(0px);
+        animation: float 5s ease-in-out infinite;
+        mix-blend-mode: multiply;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 3px;
+        font-size: clamp(0.5rem, 1.1vh, 1.9rem);
+        color: $color-brown;
+        background-color: $color-beige;
+        padding: 0.6rem;
+        border-radius: 11px;
+        position: relative;
+        box-shadow: 1rem 1rem $color-brown;
+        font-family: "Baloo 2", cursive;
+        // border: 1px solid $color-green;
+    }
+}
+
+
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-10px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+@keyframes float2 {
+    0% {
+        line-height: 30px;
+        transform: translatey(0px);
+    }
+
+    55% {
+        transform: translatey(-10px);
+    }
+
+    60% {
+        line-height: 10px;
+    }
+
+    100% {
+        line-height: 30px;
+        transform: translatey(0px);
+    }
+}
+
