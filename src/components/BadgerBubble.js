@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-// import axios from "axios";
 import badgerAI from "../textData/badgerAI";
 
 const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userInput}) => {
@@ -18,7 +17,6 @@ const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userIn
   }, [userInput])
 
   useEffect(() => {
-    // setConcatPrompt(badgerPrompt.concat(badgerConvo))
     const call = async () => {   
       const configur = new Configuration({
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
@@ -35,15 +33,12 @@ const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userIn
         // stop: ["\n"],
       })
       setAiText(response.data.choices[0].text)
+      console.log(setAiText)
     }; 
-
-    if (toggleAPI === false) {
+    
+    if (toggleAPI === true) {
       call()
     }
-    
-      
-    
-
   }, [badgerConvo]);
 
   return (

@@ -11,13 +11,13 @@ const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
   const [concatPrompt, setConcatPrompt] = useState(foxPrompt);
   const [aiText, setAiText] = useState(undefined)
 
+  // console.log(foxPrompt)
 
   useEffect(() => {
     setConcatPrompt(foxPrompt.concat(userInput))
   }, [userInput])
 
   useEffect(() => {
-
     const call = async () => {   
       const configur = new Configuration({
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
@@ -34,14 +34,12 @@ const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
         // stop: ["\n"],
       })
       setAiText(response.data.choices[0].text)
+      console.log(setAiText)
     }; 
 
-    if (toggleAPI === false) {
+    if (toggleAPI === true) {
       call()
     }
-    
-      
-    
 
   }, [foxConvo]);
 

@@ -2,35 +2,52 @@ import "./style/sass/App.scss";
 import Animals from "./components/Animals";
 import Firelies from "./components/Fireflies";
 import Shoppe from "./components/Shoppe";
+import MoodBirdBubble from './components/MoodBirdBubble'
 import BadgerBubble from "./components/BadgerBubble";
 import FoxBubble from "./components/FoxBubble";
+import { Configuration, OpenAIApi } from "openai";
 
-import background from "./assets/back3.png";
-import { useState } from "react";
+import background from "./assets/backtran.png";
+import { useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const [loadBadger, setLoadBadger] = useState(false);
   const [loadFox, setLoadFox] = useState(false);
+  const [loadMoodBird, setLoadMoodBird] = useState(false)
   const [loadShoppe, setLoadShoppe] = useState(false);
+  // Animal Conversations
   const [foxConvo, setFoxConvo] = useState("");
   const [badgerConvo, setBadgerConvo] = useState("");
+  const [moodBirdConvo, setMoodBirdConvo] = useState("")
+  // Other
   const [animalChoice, setAnimalChoice] = useState("");
   const [userInput, setUserInput] = useState("");
   const [toggleAPI, setToggleAPI] = useState(null)
+  const [backColor, setBackColor] = useState("");
+
+  const [aiText, setAiText] = useState(undefined)
+
 
   const handleBadger = () => {
     setAnimalChoice("badger")
     setLoadBadger(!loadBadger);
     setLoadFox(false);
-
+    setLoadMoodBird(false)
   };
   const handleFox = () => {
     setAnimalChoice("fox")
     setLoadFox(!loadFox);
     setLoadBadger(false);
-    ;
+    setLoadMoodBird(false)
   };
+
+  const handleMoodBird = () => {
+    setAnimalChoice("moodBird")
+    setLoadMoodBird(!loadMoodBird)
+    setLoadBadger(false);
+    setLoadFox(false);
+  }
   const handleShoppe = () => {
     setLoadShoppe(!loadShoppe);
   };
@@ -46,17 +63,16 @@ function App() {
     } else if (animalChoice === "badger") {
       setBadgerConvo(userInput);
       event.target.reset();
-      
+    } else if (animalChoice === "moodBird") {
+      setMoodBirdConvo(userInput);
+      event.target.reset();
     }
   };
 
   const handleInput = (event) => {
-  // console.log(event.target.value)
     setUserInput(event.target.value);
   }
-
-  
-
+  console.log(aiText)
   return (
     <main className="main">
       <div className="wrapper">
@@ -76,28 +92,39 @@ function App() {
             </motion.section>
           )}
         </AnimatePresence>
-        <section className="sectionContainer">
+        <section 
+        style={{backgroundColor: aiText}}
+        className="sectionContainer">
           <img
             className="inner backImg"
             src={background}
             alt="Illustrated forest setting"
           />
-          <Animals handleFox={handleFox} handleBadger={handleBadger} />
+          <Animals 
+          handleFox={handleFox} 
+          handleBadger={handleBadger}
+          handleMoodBird={handleMoodBird} />
           <BadgerBubble 
           userInput={userInput}
           toggleAPI={toggleAPI}
-          setBadgerConvo={setBadgerConvo}
-          animalChoice={animalChoice}
           badgerConvo={badgerConvo}
           loadBadger={loadBadger} 
           handleShoppe={handleShoppe} />
           <FoxBubble 
+          userInput={userInput}
+          toggleAPI={toggleAPI}
           foxConvo={foxConvo}
-          loadFox={loadFox} 
-          handleShoppe={handleShoppe} />
+          loadFox={loadFox} />
+          <MoodBirdBubble 
+          aiText={aiText}
+          setAiText={setAiText}
+          userInput={userInput}
+          toggleAPI={toggleAPI}
+          moodBirdConvo={moodBirdConvo}
+          loadMoodBird={loadMoodBird} />
           <Firelies />
           <AnimatePresence exitBeforeEnter initial={false}>
-          {loadFox || loadBadger ? (
+          {loadFox || loadBadger || loadMoodBird ? (
             <motion.form 
             initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

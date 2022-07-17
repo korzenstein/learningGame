@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const Animals = ({handleBadger, handleFox}) => {
+const Animals = ({handleBadger, handleFox, handleMoodBird}) => {
 
 
   
@@ -1984,6 +1984,7 @@ const Animals = ({handleBadger, handleFox}) => {
         {/* Birds below */}
         <g fillRule='evenodd' clipRule='evenodd'>
         <motion.g 
+        onClick={handleMoodBird}
         animate={{rotate: [0, 3, 0]}}
           transition={{ ease: "easeInOut", duration: 3, repeat: Infinity }}
         id='birdBottom'>
