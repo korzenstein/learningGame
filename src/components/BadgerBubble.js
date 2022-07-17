@@ -3,19 +3,22 @@ import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 // import axios from "axios";
 import badgerAI from "../textData/badgerAI";
-// const badgerPrompt = badgerAI.prompt;
 
-const BadgerBubble = ({ loadBadger, handleShoppe, badgerConvo}) => {
+const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userInput}) => {
 
 
 
   const badgerPrompt = badgerAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(badgerPrompt);
+  const [aiText, setAiText] = useState(undefined)
 
-  console.log(concatPrompt)
 
   useEffect(() => {
-    setConcatPrompt(badgerPrompt.concat(badgerConvo))
+    setConcatPrompt(badgerPrompt.concat(userInput))
+  }, [userInput])
+
+  useEffect(() => {
+    // setConcatPrompt(badgerPrompt.concat(badgerConvo))
     const call = async () => {   
       const configur = new Configuration({
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
@@ -30,13 +33,17 @@ const BadgerBubble = ({ loadBadger, handleShoppe, badgerConvo}) => {
         frequency_penalty: 0,
         presence_penalty: 0,
         // stop: ["\n"],
-      });
-      console.log(response.data);
-      console.log(response.data.choices[0].text);
-    };
+      })
+      setAiText(response.data.choices[0].text)
+    }; 
 
+    if (toggleAPI === false) {
+      call()
+    }
+    
+      
+    
 
-    // call()
   }, [badgerConvo]);
 
   return (
@@ -49,13 +56,24 @@ const BadgerBubble = ({ loadBadger, handleShoppe, badgerConvo}) => {
             exit={{ opacity: 0 }}
             className="inner badgerBubble"
           >
-            <p onClick={() => console.log("words")} className="badgerText">
-              Why hello there! Welcome to my shoppe in the woods. How may I be
-              of service?
-              <button className="testButton" onClick={handleShoppe}>
+            {
+              toggleAPI ?
+              <p className="badgerText">{aiText}</p>
+              :
+
+              <p className="badgerText">
+              Why hello there! Welcome to my shoppe in the woods. How may I be of service? 
+              {/* <button className="testButton" onClick={handleShoppe}>
                 Shoppe Here!
-              </button>
+              </button> */}
             </p>
+            }
+              
+              
+               
+              
+            
+            
           </motion.div>
         ) : null}
       </AnimatePresence>
