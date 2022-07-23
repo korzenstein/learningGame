@@ -5,14 +5,19 @@ import Shoppe from "./components/Shoppe";
 import MoodBirdBubble from "./components/MoodBirdBubble";
 import BadgerBubble from "./components/BadgerBubble";
 import FoxBubble from "./components/FoxBubble";
-import Right from "./components/Right";
+import Information from "./components/Information";
+import { DndProvider } from 'react-dnd'
+import {HTML5Backend} from 'react-dnd-html5-backend'
 // import { Configuration, OpenAIApi } from "openai";
-
-import background from "./assets/backtran.png";
+import shoppeItems from "./components/shoppeItems.js";
+import background from "./assets/transparent.png";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
+  // information state
+  const [mushCount, setMushCount] = useState(0)
+  // animals
   const [loadBadger, setLoadBadger] = useState(false);
   const [loadFox, setLoadFox] = useState(false);
   const [loadMoodBird, setLoadMoodBird] = useState(false);
@@ -28,9 +33,20 @@ function App() {
   const [backColor, setBackColor] = useState("");
 
   const [aiText, setAiText] = useState(undefined);
+  const [soup, setSoup] = useState([])
+  const [shoppeArray, setShoppeArray] = useState(shoppeItems)
 
   // firebase collection
   const [sessionQuestions, setSessionQuestions] = useState([]);
+
+
+  const addImageToSoup = (id) => {
+  console.log(id)
+}
+
+  const handleMushCount = (amount) => {
+    setMushCount(mushCount => mushCount + amount)
+  }
 
   const handleBadger = () => {
     setAnimalChoice("badger");
@@ -94,10 +110,12 @@ function App() {
     setUserInput(event.target.value);
   };
   return (
+    <DndProvider backend={HTML5Backend}>
     <main className="main">
       <div className="wrapper">
         <AnimatePresence exitBeforeEnter initial={false}>
           <Shoppe
+          shoppeArray={shoppeArray}
             loadShoppe={loadShoppe}
             animalChoice={animalChoice}
             handleShoppe={handleShoppe}
@@ -113,9 +131,12 @@ function App() {
             alt="Illustrated forest setting"
           />
           <Animals
+          shoppeArray={shoppeArray}
+          addImageToSoup={addImageToSoup}
             handleFox={handleFox}
             handleBadger={handleBadger}
             handleMoodBird={handleMoodBird}
+            handleMushCount={handleMushCount}
           />
           <BadgerBubble
             loadShoppe={loadShoppe}
@@ -156,10 +177,13 @@ function App() {
           </AnimatePresence>
         </section>
         <motion.section className="uiRight">
-          <Right />
+          <Information
+          mushCount={mushCount}
+           />
         </motion.section>
       </div>
     </main>
+    </DndProvider>
   );
 }
 
