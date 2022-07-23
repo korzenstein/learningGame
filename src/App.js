@@ -5,10 +5,11 @@ import Shoppe from "./components/Shoppe";
 import MoodBirdBubble from './components/MoodBirdBubble'
 import BadgerBubble from "./components/BadgerBubble";
 import FoxBubble from "./components/FoxBubble";
-import { Configuration, OpenAIApi } from "openai";
+import Right from "./components/Right";
+// import { Configuration, OpenAIApi } from "openai";
 
 import background from "./assets/backtran.png";
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
   const [backColor, setBackColor] = useState("");
 
   const [aiText, setAiText] = useState(undefined)
+
+  // firebase collection
+  const [sessionQuestions, setSessionQuestions] = useState([])
 
 
   const handleBadger = () => {
@@ -58,21 +62,25 @@ function App() {
 
     if (animalChoice === "fox") {
       setFoxConvo(userInput);
+      setSessionQuestions(sessionQuestions => [...sessionQuestions, foxConvo])
       event.target.reset();
 
     } else if (animalChoice === "badger") {
       setBadgerConvo(userInput);
+      setSessionQuestions(sessionQuestions => [...sessionQuestions, badgerConvo])
       event.target.reset();
     } else if (animalChoice === "moodBird") {
       setMoodBirdConvo(userInput);
+      setSessionQuestions(sessionQuestions => [...sessionQuestions, moodBirdConvo])
       event.target.reset();
     }
   };
 
+  console.log("user q's", sessionQuestions)
+
   const handleInput = (event) => {
     setUserInput(event.target.value);
   }
-  console.log(aiText)
   return (
     <main className="main">
       <div className="wrapper">
@@ -87,7 +95,7 @@ function App() {
               className="uiLeft"
             >
               <div className="textBox">
-                <p>UI 1</p>
+                <p>SHOPPE</p>
               </div>
             </motion.section>
           )}
@@ -138,13 +146,10 @@ function App() {
           ) : null}
           </AnimatePresence>
         </section>
-        <section className="uiRight">
-          <div className="textBox">
-            <p>UI 2</p>
-            <p>Information</p>
-            <p>Images</p>
-          </div>
-        </section>
+        <motion.section 
+        className="uiRight">
+          <Right/>
+        </motion.section>
       </div>
     </main>
   );

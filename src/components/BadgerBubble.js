@@ -2,15 +2,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import badgerAI from "../textData/badgerAI";
+import firebase from '../firebase';
 
 const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userInput}) => {
-
-
 
   const badgerPrompt = badgerAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(badgerPrompt);
   const [aiText, setAiText] = useState(undefined)
-
 
   useEffect(() => {
     setConcatPrompt(badgerPrompt.concat(userInput))
@@ -33,7 +31,7 @@ const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userIn
         // stop: ["\n"],
       })
       setAiText(response.data.choices[0].text)
-      console.log(setAiText)
+      // console.log(setAiText)
     }; 
     
     if (toggleAPI === true) {
@@ -57,7 +55,7 @@ const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userIn
               :
 
               <p className="badgerText">
-              Why hello there! Welcome to my shoppe in the woods. How may I be of service? 
+              Why hello there! Welcome to my shoppe in the woods. Please, ask me any questions you have.
               {/* <button className="testButton" onClick={handleShoppe}>
                 Shoppe Here!
               </button> */}

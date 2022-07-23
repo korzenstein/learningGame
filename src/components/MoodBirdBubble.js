@@ -17,7 +17,7 @@ const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdCo
 //   }, [userInput])
 
   useEffect(() => {
-    const call = async () => {   
+    const moodBirdCall = async () => {   
       const configur = new Configuration({
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
       });
@@ -38,7 +38,7 @@ const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdCo
     }; 
     
     if (toggleAPI === true) {
-      call()
+      moodBirdCall()
     }
   }, [moodBirdConvo])
 

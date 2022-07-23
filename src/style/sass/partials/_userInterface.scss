@@ -3,10 +3,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .textBox {
-    background-color: bisque;
+    background-color: purple;
     width: 14vw;
     display: flex;
     align-items: center;
@@ -17,7 +18,7 @@
 }
 
 .shoppeContainer {
-    background-color: bisque;
+    background-color: purple;
     width: 14vw;
     // height: 10%;
     display: flex;
@@ -26,5 +27,8 @@
     justify-content: center;
     // align-self: center;
     // margin-top: 40%;
+    p {
+        // display: none;
+    }
 }
 

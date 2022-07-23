@@ -1,5 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 
+// const testVariant = {
+
+// }
+
 const Shoppe = ({ handleShoppe }) => {
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
@@ -10,6 +14,9 @@ const Shoppe = ({ handleShoppe }) => {
         className="uiLeft"
       >
         <div className="shoppeContainer">
+          <motion.div>
+
+          </motion.div>
           <p>UI 1</p>
           <p>Fruits</p>
           <p>Clothes</p>

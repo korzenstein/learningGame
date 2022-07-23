@@ -60,7 +60,7 @@ const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
               :
 
               <p className="foxText">
-              Allo there! I am the Fox. Please enjoy my music. How may I be of service to ye?
+              Allo there! I am the Fox. Please enjoy my music. Please, ask me any questions you have.
             </p>
             }
           </motion.div>
