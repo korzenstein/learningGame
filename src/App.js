@@ -6,13 +6,13 @@ import MoodBirdBubble from "./components/MoodBirdBubble";
 import BadgerBubble from "./components/BadgerBubble";
 import FoxBubble from "./components/FoxBubble";
 import Information from "./components/Information";
-import { DndProvider } from 'react-dnd'
-import {HTML5Backend} from 'react-dnd-html5-backend'
 // import { Configuration, OpenAIApi } from "openai";
 import shoppeItems from "./components/shoppeItems.js";
 import background from "./assets/transparent.png";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { DragDropContext } from 'react-beautiful-dnd';
+
 
 function App() {
   // information state
@@ -33,16 +33,11 @@ function App() {
   const [backColor, setBackColor] = useState("");
 
   const [aiText, setAiText] = useState(undefined);
-  const [soup, setSoup] = useState([])
   const [shoppeArray, setShoppeArray] = useState(shoppeItems)
 
   // firebase collection
   const [sessionQuestions, setSessionQuestions] = useState([]);
 
-
-  const addImageToSoup = (id) => {
-  console.log(id)
-}
 
   const handleMushCount = (amount) => {
     setMushCount(mushCount => mushCount + amount)
@@ -104,17 +99,17 @@ function App() {
     }
   };
 
-  console.log("user q's", sessionQuestions);
 
   const handleInput = (event) => {
     setUserInput(event.target.value);
   };
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DragDropContext>
     <main className="main">
       <div className="wrapper">
         <AnimatePresence exitBeforeEnter initial={false}>
           <Shoppe
+          setShoppeArray={setShoppeArray}
           shoppeArray={shoppeArray}
             loadShoppe={loadShoppe}
             animalChoice={animalChoice}
@@ -132,7 +127,6 @@ function App() {
           />
           <Animals
           shoppeArray={shoppeArray}
-          addImageToSoup={addImageToSoup}
             handleFox={handleFox}
             handleBadger={handleBadger}
             handleMoodBird={handleMoodBird}
@@ -183,7 +177,7 @@ function App() {
         </motion.section>
       </div>
     </main>
-    </DndProvider>
+    </DragDropContext>
   );
 }
 

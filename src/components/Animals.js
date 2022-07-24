@@ -5,13 +5,7 @@ import { useDrop } from 'react-dnd'
 
 const Animals = ({handleBadger, handleFox, handleMoodBird, handleMushCount, addImageToSoup, shoppeArray}) => {
 
-const [{isOver}, drop] = useDrop(() => ({
-  accept: "image",
-  drop: (item) => addImageToSoup(item.id),
-  collect: (monitor) => ({
-            isOver: !!monitor.isOver()
-        })
-}))
+
   
   return (
       <svg
@@ -3347,7 +3341,6 @@ const [{isOver}, drop] = useDrop(() => ({
       </g>
               {/* couldron starts here */}
       <g 
-      ref={drop}
       id='couldron' fillRule='evenodd' clipRule='evenodd'>
         <path
           fill='#D5854F'

@@ -3,12 +3,12 @@ import birdTest from '../assets/birdTest.png';
 
 const shoppeItems = [  
   {
-    id: 1,
+    id: "angry",
     url: birdTest,
     alt: "bird 1",
   },
   {
-    id: 2,
+    id: "happy",
     url: birdTest,
     alt: "bird 2",
   },
