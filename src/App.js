@@ -8,15 +8,14 @@ import FoxBubble from "./components/FoxBubble";
 import Information from "./components/Information";
 // import { Configuration, OpenAIApi } from "openai";
 import shoppeItems from "./components/shoppeItems.js";
-import background from "./assets/transparent.png";
+import background from "./assets/transparentmini.png";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DragDropContext } from 'react-beautiful-dnd';
-
+import { DragDropContext } from "react-beautiful-dnd";
 
 function App() {
   // information state
-  const [mushCount, setMushCount] = useState(0)
+  const [mushCount, setMushCount] = useState(0);
   // animals
   const [loadBadger, setLoadBadger] = useState(false);
   const [loadFox, setLoadFox] = useState(false);
@@ -33,7 +32,7 @@ function App() {
   const [backColor, setBackColor] = useState("");
 
   const [aiText, setAiText] = useState(undefined);
-  const [shoppeArray, setShoppeArray] = useState(shoppeItems)
+  const [shoppeArray, setShoppeArray] = useState(shoppeItems);
 
   // firebase collection
   const [sessionQuestions, setSessionQuestions] = useState([]);
@@ -44,10 +43,9 @@ function App() {
     setItemChoice(false);
   };
 
-
   const handleMushCount = (amount) => {
-    setMushCount(mushCount => mushCount + amount)
-  }
+    setMushCount((mushCount) => mushCount + amount);
+  };
 
   const handleBadger = () => {
     setAnimalChoice("badger");
@@ -55,11 +53,11 @@ function App() {
     setLoadBadger(!loadBadger);
     setLoadFox(false);
     setLoadMoodBird(false);
-    goBack()
+    goBack();
   };
   const handleFox = () => {
     setAnimalChoice("fox");
-        setLoadShoppe(false);
+    setLoadShoppe(false);
 
     setLoadFox(!loadFox);
     setLoadBadger(false);
@@ -68,7 +66,7 @@ function App() {
 
   const handleMoodBird = () => {
     setAnimalChoice("moodBird");
-        setLoadShoppe(false);
+    setLoadShoppe(false);
 
     setLoadMoodBird(!loadMoodBird);
     setLoadBadger(false);
@@ -76,8 +74,8 @@ function App() {
   };
   const handleShoppe = () => {
     setLoadShoppe(!loadShoppe);
-    setLoadBadger(false)
-    goBack()
+    setLoadBadger(false);
+    goBack();
   };
 
   const getReply = (event) => {
@@ -108,87 +106,82 @@ function App() {
     }
   };
 
-
   const handleInput = (event) => {
     setUserInput(event.target.value);
   };
   return (
     <DragDropContext>
-    <main className="main">
-      <div className="wrapper">
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <Shoppe
-          itemChoice={itemChoice}
-          setItemChoice={setItemChoice}
-          goBack={goBack}
-          setShoppeArray={setShoppeArray}
-          shoppeArray={shoppeArray}
-            loadShoppe={loadShoppe}
-            animalChoice={animalChoice}
-            handleShoppe={handleShoppe}
-          />
-        </AnimatePresence>
-        <section
-          style={{ backgroundColor: aiText }}
-          className="sectionContainer"
-        >
-          <img
-            className="inner backImg"
-            src={background}
-            alt="Illustrated forest setting"
-          />
-          <Animals
-          shoppeArray={shoppeArray}
-            handleFox={handleFox}
-            handleBadger={handleBadger}
-            handleMoodBird={handleMoodBird}
-            handleMushCount={handleMushCount}
-          />
-          <BadgerBubble
-            loadShoppe={loadShoppe}
-            userInput={userInput}
-            toggleAPI={toggleAPI}
-            badgerConvo={badgerConvo}
-            loadBadger={loadBadger}
-            handleShoppe={handleShoppe}
-          />
-          <FoxBubble
-            userInput={userInput}
-            toggleAPI={toggleAPI}
-            foxConvo={foxConvo}
-            loadFox={loadFox}
-          />
-          <MoodBirdBubble
-            aiText={aiText}
-            setAiText={setAiText}
-            userInput={userInput}
-            toggleAPI={toggleAPI}
-            moodBirdConvo={moodBirdConvo}
-            loadMoodBird={loadMoodBird}
-          />
-          <Firelies />
+      <main 
+      className="main">
+        <div className="wrapper">
           <AnimatePresence exitBeforeEnter initial={false}>
-            {loadFox || loadBadger || loadMoodBird ? (
-              <motion.form
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onSubmit={getReply}
-                onChange={handleInput}
-                className="inner userBubble"
-              >
-                <input className="userText" type="text" />
-              </motion.form>
-            ) : null}
+            <Shoppe
+              itemChoice={itemChoice}
+              setItemChoice={setItemChoice}
+              goBack={goBack}
+              setShoppeArray={setShoppeArray}
+              shoppeArray={shoppeArray}
+              loadShoppe={loadShoppe}
+              animalChoice={animalChoice}
+              handleShoppe={handleShoppe}
+            />
           </AnimatePresence>
-        </section>
-        <motion.section className="uiRight">
-          <Information
-          mushCount={mushCount}
-           />
-        </motion.section>
-      </div>
-    </main>
+          <section style={{ backgroundColor: aiText }} className="stage">
+            <img
+              className="inner backImg"
+              src={background}
+              alt="Illustrated forest setting"
+            />
+            <Animals
+              shoppeArray={shoppeArray}
+              handleFox={handleFox}
+              handleBadger={handleBadger}
+              handleMoodBird={handleMoodBird}
+              handleMushCount={handleMushCount}
+            />
+            <BadgerBubble
+              loadShoppe={loadShoppe}
+              userInput={userInput}
+              toggleAPI={toggleAPI}
+              badgerConvo={badgerConvo}
+              loadBadger={loadBadger}
+              handleShoppe={handleShoppe}
+            />
+            <FoxBubble
+              userInput={userInput}
+              toggleAPI={toggleAPI}
+              foxConvo={foxConvo}
+              loadFox={loadFox}
+            />
+            <MoodBirdBubble
+              aiText={aiText}
+              setAiText={setAiText}
+              userInput={userInput}
+              toggleAPI={toggleAPI}
+              moodBirdConvo={moodBirdConvo}
+              loadMoodBird={loadMoodBird}
+            />
+            <Firelies />
+            <AnimatePresence exitBeforeEnter initial={false}>
+              {loadFox || loadBadger || loadMoodBird ? (
+                <motion.form
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={getReply}
+                  onChange={handleInput}
+                  className="inner userBubble"
+                >
+                  <input className="userText" type="text" />
+                </motion.form>
+              ) : null}
+            </AnimatePresence>
+          </section>
+          {/* <motion.section className="uiRight"> */}
+            <Information mushCount={mushCount} />
+          {/* </motion.section> */}
+        </div>
+      </main>
     </DragDropContext>
   );
 }

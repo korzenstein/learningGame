@@ -45,7 +45,7 @@ const Information = ({mushCount}) => {
           restDelta: 0.001
         }
       }}
-          className="informationSection">
+          className="information">
             <div className="infoContainer">
               <p>Map</p>
             <motion.img 

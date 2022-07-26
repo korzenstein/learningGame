@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import ShoppeInner from "./ShoppeInner";
 
 const Shoppe = ({
   handleShoppe,
@@ -19,25 +20,25 @@ const Shoppe = ({
 
   console.log(itemChoice);
   return (
-    <motion.section className="shoppeContainer">
+    <motion.section className="shoppe">
       <AnimatePresence exitBeforeEnter initial={false}>
         {loadShoppe && animalChoice === "badger" ? (
           <motion.div
             layout
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0, rotate: 360 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ ease: "easeInOut", duration: 1 }}
-            className="shoppe"
+            className="shoppeContainer"
           >
             {itemChoice ? (
               <>
                 {/* Individual Item */}
                 <motion.div
                 layout
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   className="topDetail"
                 >
                   <div className="exitContainer">
@@ -87,12 +88,14 @@ const Shoppe = ({
             ) : (
               <>
                 {/* Shoppe Inventory Overview */}
-                <div className="topInventory">
+                {/* <div className="topInventory">
                   <div className="exitContainer">
                     <button className="exit" onClick={handleShoppe}>
                       x
-                    </button>
-                  </div>
+                    </button> */}
+                                        <ShoppeInner/>
+
+                  {/* </div>
 
                   <ul>
                     {shoppeArray.map((item) => {
@@ -107,8 +110,8 @@ const Shoppe = ({
                       );
                     })}
                   </ul>
-                </div>
-                <div className="bottom"></div>
+                </div> */}
+                {/* <div className="bottom"></div> */}
               </>
             )}
           </motion.div>

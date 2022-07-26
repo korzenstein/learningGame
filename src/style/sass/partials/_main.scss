@@ -1,5 +1,5 @@
 .main {
-  background-color: black;
+  background-color: rgb(85, 81, 81, 0.3);
   height: 100vh;
   width: 100%;
   position: relative;
@@ -8,34 +8,33 @@
   padding: 0;
   margin: 0;
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 
   .wrapper {
-    // align-items: center;
+    align-items: center;
     justify-content: space-between;
     display: flex;
     margin: 0 auto;
     max-width: 1240px;
-    width:95%;
+    width: 95%;
     gap: 1rem;
+    // height: 100%;
     .stage {
-      // box-shadow: 0px 0px 25px 25px rgba(55, 54, 51, 1);
-      // padding: 2rem 0;
       transition: 1s ease-in-out all;
-      max-width: 600px;
+      max-width: 42vw;
+      min-width: 40vw;
       width: 100%;
       height: 100%;
       display: grid;
       place-items: center;
       grid-template-areas: "inner-div";
       position: relative;
+      border-radius: 40px;
       .inner {
-        // height: 100px;
-        // width: 100px;
         grid-area: inner-div;
         width: 100%;
-        // height: 100%;
+        border-radius: 40px;
       }
       .backImg {
         z-index: 10;
@@ -56,6 +55,3 @@
     }
   }
 }
-
-
-  
