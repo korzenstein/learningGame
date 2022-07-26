@@ -1,72 +1,120 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useState } from "react";
 
-const Shoppe = ({ handleShoppe, loadShoppe, animalChoice, shoppeArray, setShoppeArray }) => {
-  console.log(shoppeArray);
+const Shoppe = ({
+  handleShoppe,
+  loadShoppe,
+  animalChoice,
+  shoppeArray,
+  setShoppeArray,
+  itemChoice,
+  setItemChoice,
+  goBack
+}) => {
+  
 
+  const handleItemChoice = (choice) => {
+    setItemChoice(choice);
+  };
 
-
-    function handleOnDragEnd(result) {
-    if (!result.destination) return;
-
-    const items = Array.from(shoppeArray);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setShoppeArray(items);
-  }
-
+  console.log(itemChoice);
   return (
-      <motion.section className="shoppeContainer">
-        <AnimatePresence exitBeforeEnter initial={false}>
-          {loadShoppe && animalChoice === "badger" ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0, rotate: 360 }}
-              transition={{ ease: "easeInOut", duration: 1 }}
-              className="shoppe"
-            >
-              <p>UI 1</p>
-              <p>Fruits</p>
-              <p>Clothes</p>
-              <p>Potions</p>
-              <p>Health</p>
+    <motion.section className="shoppeContainer">
+      <AnimatePresence exitBeforeEnter initial={false}>
+        {loadShoppe && animalChoice === "badger" ? (
+          <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0, rotate: 360 }}
+            transition={{ ease: "easeInOut", duration: 1 }}
+            className="shoppe"
+          >
+            {itemChoice ? (
+              <>
+                {/* Individual Item */}
+                <motion.div
+                layout
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  className="topDetail"
+                >
+                  <div className="exitContainer">
+                    <button className="exit" onClick={goBack}>
+                      ↚
+                    </button>
+                    <button className="exit" onClick={handleShoppe}>
+                      x
+                    </button>
+                  </div>
+                  <div className="itemContainer">
+                    <p>Images</p>
+                  </div>
+                  <div className="itemTitleContainer">
+                    {shoppeArray.map((item) => {
+                      return (
+                        <>
+                          {console.log(item)}
+                          {item.id === itemChoice ? (
+                            <div 
+                            className="itemSub"
+                            key={item.id}>
+                              <div className="imgContainer">
+                              <img src={item.url} alt={item.class} />
+                              </div>
+                              <p>{item.type}</p>
+                            </div>
+                          ) : null}
+                        </>
+                      );
+                    })}
+                    <p>Potion</p>
+                    <p>Magic Level: 34</p>
+                  </div>
+                </motion.div>
+                <div className="bottom">
+                  <div className="amount">
+                    <p className="subtitle">amount</p>
+                    <p className="display">120</p>
+                  </div>
+                  <div className="price">
+                    <p className="subtitle">price</p>
+                    <p className="display">$3</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Shoppe Inventory Overview */}
+                <div className="topInventory">
+                  <div className="exitContainer">
+                    <button className="exit" onClick={handleShoppe}>
+                      x
+                    </button>
+                  </div>
 
-              <div>
-                <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="characters">
-            {(provided) => (
-              <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                {shoppeArray.map(({id, url, alt}, index) => {
-                  return (
-                    <Draggable key={id} draggableId={id} index={index}>
-                      {(provided) => (
-                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <div className="characters-thumb">
-                            <img src={url} alt={`${alt} Thumb`} />
-                          </div>
-                          <p>
-                            { alt }
-                          </p>
+                  <ul>
+                    {shoppeArray.map((item) => {
+                      return (
+                        <li
+                          onClick={() => handleItemChoice(item.id)}
+                          key={item.id}
+                        >
+                          <img src={item.url} alt={item.type} />
+                          <p>{item.type}</p>
                         </li>
-                      )}
-                    </Draggable>
-                  );
-                })}
-                {provided.placeholder}
-              </ul>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className="bottom"></div>
+              </>
             )}
-          </Droppable>
-        </DragDropContext>
-              </div>
-
-              <button onClick={handleShoppe}>X</button>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </motion.section>
-    
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </motion.section>
   );
 };
 

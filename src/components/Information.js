@@ -1,5 +1,7 @@
 import {motion} from 'framer-motion'
 import {useState} from 'react'
+// import Map from './Map'
+import map from '../assets/map.png'
 
 const rightVariant = {
   start: {
@@ -27,7 +29,7 @@ const Information = ({mushCount}) => {
     setAnimateInfo(choice)
   }
     return (
-        <motion.div 
+        <motion.section 
         variants={rightVariant}
         initial="start"
       animate={animateInfo}
@@ -43,21 +45,19 @@ const Information = ({mushCount}) => {
           restDelta: 0.001
         }
       }}
+          className="informationSection">
+            <div className="infoContainer">
+              <p>Map</p>
+            <motion.img 
+            whileHover={{scale: 1.1}}
+            className="map"
+            src={map} alt="Map of lands" />
+
+            </div>
+        
           
-          className="textBox">
-            <button
-            onClick={()=> handleAnimate("normal")}
-            >Normal</button>
-            <button
-            onClick={()=> handleAnimate("large")}
-            >Large</button>
-            <button
-            onClick={()=> handleAnimate("largest")}
-            >Largest</button>
-            <p>{mushCount}</p>
-            <p>Information</p>
-            <p>Images</p>
-          </motion.div>
+            
+          </motion.section>
     )
 }
 export default Information

@@ -3340,7 +3340,16 @@ const Animals = ({handleBadger, handleFox, handleMoodBird, handleMushCount, addI
         </motion.g>
       </g>
               {/* couldron starts here */}
-      <g 
+      <motion.g 
+      initial={{scale: 1.1}}
+      animate={
+        {rotateX: [0, 16, 0], 
+          
+          rotate: [0, 2, 0],
+          originX: 0.5 
+      }}
+          transition={{ ease: "easeInOut", duration: 7.5, repeat: Infinity }}
+      className="couldron"
       id='couldron' fillRule='evenodd' clipRule='evenodd'>
         <path
           fill='#D5854F'
@@ -3751,7 +3760,7 @@ const Animals = ({handleBadger, handleFox, handleMoodBird, handleMushCount, addI
             d='M122.619 241.946c-.269.011-.531 0-.73-.219.274-.029.568-.126.73.219zM121.722 241.737l-.254.212.254-.212zM122.831 242.188l-.211-.243.211.243z'
           ></path>
         </g>
-      </g>
+      </motion.g>
       {/* couldron ends here */}
       </svg>
   );

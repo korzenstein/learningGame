@@ -38,6 +38,12 @@ function App() {
   // firebase collection
   const [sessionQuestions, setSessionQuestions] = useState([]);
 
+  const [itemChoice, setItemChoice] = useState(false);
+
+  const goBack = () => {
+    setItemChoice(false);
+  };
+
 
   const handleMushCount = (amount) => {
     setMushCount(mushCount => mushCount + amount)
@@ -49,6 +55,7 @@ function App() {
     setLoadBadger(!loadBadger);
     setLoadFox(false);
     setLoadMoodBird(false);
+    goBack()
   };
   const handleFox = () => {
     setAnimalChoice("fox");
@@ -69,6 +76,8 @@ function App() {
   };
   const handleShoppe = () => {
     setLoadShoppe(!loadShoppe);
+    setLoadBadger(false)
+    goBack()
   };
 
   const getReply = (event) => {
@@ -109,6 +118,9 @@ function App() {
       <div className="wrapper">
         <AnimatePresence exitBeforeEnter initial={false}>
           <Shoppe
+          itemChoice={itemChoice}
+          setItemChoice={setItemChoice}
+          goBack={goBack}
           setShoppeArray={setShoppeArray}
           shoppeArray={shoppeArray}
             loadShoppe={loadShoppe}
