@@ -1,6 +1,7 @@
 // detail section
 .shoppe {
-  min-width: 22vw;
+  width: 100%;
+  // min-width: 22vw;
   z-index: 40;
   max-height: 60%;
   display: flex;
@@ -96,7 +97,7 @@
 }
 
 .shoppeContainer {
-  .shoppe {
+  .shoppe { 
     width: 100%;
     .topInventory {
       width: 100%;

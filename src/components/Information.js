@@ -1,7 +1,7 @@
 import {motion} from 'framer-motion'
 import {useState} from 'react'
 // import Map from './Map'
-import map from '../assets/map.png'
+import map from '../assets/mapalt.png'
 
 const rightVariant = {
   start: {
@@ -46,10 +46,8 @@ const Information = ({mushCount}) => {
         }
       }}
           className="information">
-            <div className="infoContainer">
-              <p>Map</p>
+            <div className="infoContainer ">
             <motion.img 
-            whileHover={{scale: 1.1}}
             className="map"
             src={map} alt="Map of lands" />
 

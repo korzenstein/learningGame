@@ -1,27 +1,72 @@
 
-.information {
-  min-width: 22vw;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // flex-direction: column;
+// .information {
+//   min-width: 22vw;
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   // flex-direction: column;
 
-  .infoContainer {
-    height: 70%;
-    width: 100%;
+//   .infoContainer {
+//     height: 70%;
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//     position: relative;
+//     background-color: #d4c8bc;
+//     border-radius: 20px;
+//     .map {
+//       position: absolute;
+//       z-index: 40;
+//       width: 13vw;
+//       right: 0;
+//     }
+//   }
+// }
+
+
+.information {
+  width: 100%;
+  // min-width: 22vw;
+    z-index: 40;
+      max-height: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    position: relative;
-    background-color: rgb(252, 216, 145);
-    border-radius: 20px;
-    .map {
-      position: absolute;
-      z-index: 40;
-      width: 13vw;
-      right: 0;
+    // flex-direction: column;
+  
+    .infoContainer {
+      transition: 1s ease-in-out all;
+      // max-width: 42vw;
+      // min-width: 40vw;
+      background-color: #d4c8bc;
+      width: 100%;
+      // height: 100%;
+      display: grid;
+      place-items: center;
+      grid-template-areas: "inner-div";
+      position: relative;
+      max-height: 60%;
+        border-radius: 30px;
+
+      .inner {
+        grid-area: inner-div;
+        width: 100%;
+        border-radius: 40px;
+      }
+
+      .map {
+        z-index: 10;
+          border-radius: 30px;
+      }
+
+      .clickables,
+      .badger {
+        z-index: 30;
+      }
+
+     
     }
   }
-}
