@@ -111,7 +111,15 @@ function App() {
   };
   return (
     <DragDropContext>
-      <main 
+      <motion.main 
+      initial={{opacity: 0}}
+      animate={{ opacity: 1 }}
+       transition={{
+        default: {
+          duration: 1,
+          ease: "easeInOut"
+        }
+      }}
       className="main">
         <div className="wrapper">
           <AnimatePresence exitBeforeEnter initial={false}>
@@ -181,7 +189,7 @@ function App() {
             <Information mushCount={mushCount} />
           {/* </motion.section> */}
         </div>
-      </main>
+      </motion.main>
     </DragDropContext>
   );
 }
