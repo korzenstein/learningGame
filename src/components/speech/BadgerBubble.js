@@ -1,20 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-// import axios from "axios";
-import foxAI from "../textData/foxAI";
+import badgerAI from "./textData/badgerAI";
+// import firebase from '../firebase';
 
+const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userInput}) => {
 
-const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
-
-  const foxPrompt = foxAI.prompt;
-  const [concatPrompt, setConcatPrompt] = useState(foxPrompt);
+  const badgerPrompt = badgerAI.prompt;
+  const [concatPrompt, setConcatPrompt] = useState(badgerPrompt);
   const [aiText, setAiText] = useState(undefined)
 
-  // console.log(foxPrompt)
-
   useEffect(() => {
-    setConcatPrompt(foxPrompt.concat(userInput))
+    setConcatPrompt(badgerPrompt.concat(userInput))
   }, [userInput])
 
   useEffect(() => {
@@ -34,39 +31,46 @@ const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
         // stop: ["\n"],
       })
       setAiText(response.data.choices[0].text)
-      console.log(setAiText)
+      // console.log(setAiText)
     }; 
-
+    
     if (toggleAPI === true) {
       call()
     }
-
-  }, [foxConvo]);
+  }, [badgerConvo]);
 
   return (
     <>
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadFox ? (
+        {loadBadger ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="inner foxBubble"
+            className="inner badgerBubble"
           >
-
             {
-              toggleAPI && aiText !== undefined  ?
-              <p className="foxText">{aiText}</p>
+              toggleAPI && aiText !== undefined ?
+              <p className="badgerText">{aiText}</p>
               :
 
-              <p className="foxText">
-              Allo there! I am the Fox. Please enjoy my music. Please, ask me any questions you have.
+              <p className="badgerText">
+              Why hello there! Welcome to my shoppe in the woods. Please, ask me any questions you have.
+              {/* <button className="testButton" onClick={handleShoppe}>
+                Shoppe Here!
+              </button> */}
             </p>
             }
+              
+              
+               
+              
+            
+            
           </motion.div>
         ) : null}
       </AnimatePresence>
     </>
   );
 };
-export default FoxBubble;
+export default BadgerBubble;

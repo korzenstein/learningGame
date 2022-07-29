@@ -19,7 +19,18 @@
     max-width: 1440px;
     width: 95%;
     gap: 1rem;
+    position: relative;
     // height: 100%;
+    .title {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-size: 1rem;
+      font-family: "Fantasya";
+      font-weight: bold;
+      color: rgb(41, 41, 41, 0.8);
+      margin: 0;
+    }
     .stage {
       transition: 1s ease-in-out all;
       max-width: 42vw;

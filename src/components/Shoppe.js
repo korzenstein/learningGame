@@ -1,12 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ShoppeInner from "./ShoppeInner";
 
 const Shoppe = ({
   handleShoppe,
   loadShoppe,
   animalChoice,
-  shoppeArray,
+  shoppeArray, 
   setShoppeArray,
   itemChoice,
   setItemChoice,
@@ -18,7 +18,14 @@ const Shoppe = ({
     setItemChoice(choice);
   };
 
-  console.log(itemChoice);
+   const shoppeInnerStage = useMemo(() => {
+    return (
+    <ShoppeInner/>)
+  }, [])
+
+                    
+
+
   return (
     <motion.section className="shoppe">
       <AnimatePresence exitBeforeEnter initial={false}>
@@ -87,13 +94,15 @@ const Shoppe = ({
               </>
             ) : (
               <>
+              {shoppeInnerStage}
+                  {/* <ShoppeInner/> */}
+
                 {/* Shoppe Inventory Overview */}
                 {/* <div className="topInventory">
                   <div className="exitContainer">
                     <button className="exit" onClick={handleShoppe}>
                       x
                     </button> */}
-                                        <ShoppeInner/>
 
                   {/* </div>
 

@@ -1,17 +1,24 @@
 import "./style/sass/App.scss";
+
 import Animals from "./components/Animals";
 import Firelies from "./components/Fireflies";
+// User Interaces / UI
 import Shoppe from "./components/Shoppe";
-import MoodBirdBubble from "./components/MoodBirdBubble";
-import BadgerBubble from "./components/BadgerBubble";
-import FoxBubble from "./components/FoxBubble";
 import Information from "./components/Information";
+// Speech Bubbles
+import MoodBirdBubble from "./components/speech/MoodBirdBubble";
+import BadgerBubble from "./components/speech/BadgerBubble";
+import FoxBubble from "./components/speech/FoxBubble";
 // import { Configuration, OpenAIApi } from "openai";
-import shoppeItems from "./components/shoppeItems.js";
 import background from "./assets/transparentmini.png";
-import { useState } from "react";
+
+// Library Imports
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DragDropContext } from "react-beautiful-dnd";
+
+import shoppeItems from "./components/shoppeItems.js";
+
 
 function App() {
   // information state
@@ -33,6 +40,7 @@ function App() {
 
   const [aiText, setAiText] = useState(undefined);
   const [shoppeArray, setShoppeArray] = useState(shoppeItems);
+  const [loadMap, setLoadMap] = useState(false)
 
   // firebase collection
   const [sessionQuestions, setSessionQuestions] = useState([]);
@@ -49,8 +57,8 @@ function App() {
 
   const handleBadger = () => {
     setAnimalChoice("badger");
-    setLoadShoppe(!loadShoppe);
-    setLoadBadger(!loadBadger);
+    setLoadShoppe(prev => !prev);
+    setLoadBadger(prev => !prev);
     setLoadFox(false);
     setLoadMoodBird(false);
     goBack();
@@ -59,7 +67,8 @@ function App() {
     setAnimalChoice("fox");
     setLoadShoppe(false);
 
-    setLoadFox(!loadFox);
+    setLoadFox(prev => !prev);
+    console.log(loadFox)
     setLoadBadger(false);
     setLoadMoodBird(false);
   };
@@ -68,15 +77,19 @@ function App() {
     setAnimalChoice("moodBird");
     setLoadShoppe(false);
 
-    setLoadMoodBird(!loadMoodBird);
+    setLoadMoodBird(prev => !prev);
     setLoadBadger(false);
     setLoadFox(false);
   };
   const handleShoppe = () => {
-    setLoadShoppe(!loadShoppe);
+    setLoadShoppe(prev => !prev);
     setLoadBadger(false);
     goBack();
   };
+
+  const handleMap = () => {
+    setLoadMap(prev => !prev)
+  }
 
   const getReply = (event) => {
     event.preventDefault();
@@ -109,11 +122,27 @@ function App() {
   const handleInput = (event) => {
     setUserInput(event.target.value);
   };
+
+  const animalStage = useMemo(() => {
+    return (
+    <Animals
+    handleMap={handleMap}
+    shoppeArray={shoppeArray}
+    handleFox={handleFox}
+    handleBadger={handleBadger}
+    handleMoodBird={handleMoodBird}
+    handleMushCount={handleMushCount}
+    />)
+  }, [])
+
+
+  
   return (
     <DragDropContext>
       <motion.main 
       initial={{opacity: 0}}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
        transition={{
         default: {
           duration: 1,
@@ -122,6 +151,7 @@ function App() {
       }}
       className="main">
         <div className="wrapper">
+          <h1 className="title">Badger + Fox</h1>
           <AnimatePresence exitBeforeEnter initial={false}>
             <Shoppe
               itemChoice={itemChoice}
@@ -140,13 +170,7 @@ function App() {
               src={background}
               alt="Illustrated forest setting"
             />
-            <Animals
-              shoppeArray={shoppeArray}
-              handleFox={handleFox}
-              handleBadger={handleBadger}
-              handleMoodBird={handleMoodBird}
-              handleMushCount={handleMushCount}
-            />
+            {animalStage}
             <BadgerBubble
               loadShoppe={loadShoppe}
               userInput={userInput}
@@ -186,7 +210,7 @@ function App() {
             </AnimatePresence>
           </section>
           {/* <motion.section className="uiRight"> */}
-            <Information mushCount={mushCount} />
+            <Information loadMap={loadMap} />
           {/* </motion.section> */}
         </div>
       </motion.main>
