@@ -11,6 +11,9 @@
       width: 95%;
       // flex-wrap: wrap;
       // height: 100vh;
+      .title {
+        display: none;
+      }
       .stage {
         max-width: 65vw;
         order:-1;
