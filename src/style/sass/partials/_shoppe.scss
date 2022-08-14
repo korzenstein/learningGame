@@ -1,4 +1,8 @@
 // detail section
+.background {
+  background: #d4c8bc;
+}
+
 .shoppe {
   width: 100%;
   // min-width: 22vw;
@@ -9,13 +13,14 @@
   align-items: center;
   justify-content: center;
   .shoppeContainer {
-    background: #d4c8bc;
+    // background: #d4c8bc;
     width: 100%;
     max-height: 60%;
     border-radius: 30px;
+    
     .topDetail {
       width: 100%;
-      background: #ffffff;
+      // background: #ffffff;
       height: 70%;
       display: flex;
       align-items: center;
@@ -142,6 +147,26 @@
 }
 
 
+.shoppeContainer {
+  width: 100%;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "inner-div";
+    position: relative;
+  .inner {
+      grid-area: inner-div;
+      width: 100%;
+    }
+  .forest {
+    border-radius: 20px;
+    z-index: 10;
+  }
+  .largeFlower {
+    z-index: 300;
+    height: 100%;
+  }
+}
+
 .shoppeInner > * {
-  cursor: pointer;
+  cursor: grab;
 }

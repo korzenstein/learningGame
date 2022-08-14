@@ -5,7 +5,15 @@ import {useEffect} from 'react'
 
 
 
-const Animals = ({handleBadger, handleFox, handleMoodBird, handleMushCount, addImageToSoup, shoppeArray, handleMap}) => {
+const Animals = ({
+  handleBadger, 
+  handleFox, 
+  handleMoodBird, 
+  handleMushCount, 
+  addImageToSoup, 
+  shoppeArray, 
+  handleForestBird,
+  handleMap}) => {
 
 
   
@@ -2146,6 +2154,7 @@ const Animals = ({handleBadger, handleFox, handleMoodBird, handleMushCount, addI
             d='M94.087 224.682c.487-.038.987.004 1.44-.238.434.443 1.202.472 1.439 1.16l-1.201.248c-.48-.544-1.219-.018-1.738-.367.095-.593.691-.006.856-.466l-.796-.337z'
           ></path>
           <motion.g 
+          
           id='birdBottomTail'>
             <path
               fill='#383946'
@@ -2582,6 +2591,7 @@ const Animals = ({handleBadger, handleFox, handleMoodBird, handleMushCount, addI
           ></path>
         </motion.g>
         <motion.g 
+        onClick={handleForestBird}
         animate={{rotate: [0, 3, 0]}}
           transition={{ ease: "easeInOut", duration: 1.9, repeat: Infinity }}
         id='birdLeft'>

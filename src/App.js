@@ -17,7 +17,8 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DragDropContext } from "react-beautiful-dnd";
 
-import shoppeItems from "./components/shoppeItems.js";
+import shoppeItemsArray from "./components/shoppeItemsArray.js";
+
 
 
 function App() {
@@ -39,12 +40,13 @@ function App() {
   const [backColor, setBackColor] = useState("");
 
   const [aiText, setAiText] = useState(undefined);
-  const [shoppeArray, setShoppeArray] = useState(shoppeItems);
+  const [shoppeArray, setShoppeArray] = useState(shoppeItemsArray);
   const [loadMap, setLoadMap] = useState(false)
+
+  const [forestBird, setForestBird] = useState(false)
 
   // firebase collection
   const [sessionQuestions, setSessionQuestions] = useState([]);
-
   const [itemChoice, setItemChoice] = useState(false);
 
   const goBack = () => {
@@ -55,12 +57,21 @@ function App() {
     setMushCount((mushCount) => mushCount + amount);
   };
 
+  const handleForestBird = () => {
+    setLoadShoppe(false)
+    setAnimalChoice("forestBird")
+    setForestBird(prev => !prev);
+    setLoadBadger(false);
+    setLoadFox(false);
+  }
+
   const handleBadger = () => {
     setAnimalChoice("badger");
     setLoadShoppe(prev => !prev);
     setLoadBadger(prev => !prev);
     setLoadFox(false);
     setLoadMoodBird(false);
+    setForestBird(false)
     goBack();
   };
   const handleFox = () => {
@@ -76,7 +87,6 @@ function App() {
   const handleMoodBird = () => {
     setAnimalChoice("moodBird");
     setLoadShoppe(false);
-
     setLoadMoodBird(prev => !prev);
     setLoadBadger(false);
     setLoadFox(false);
@@ -132,6 +142,7 @@ function App() {
     handleBadger={handleBadger}
     handleMoodBird={handleMoodBird}
     handleMushCount={handleMushCount}
+    handleForestBird={handleForestBird}
     />)
   }, [])
 
@@ -162,7 +173,11 @@ function App() {
               loadShoppe={loadShoppe}
               animalChoice={animalChoice}
               handleShoppe={handleShoppe}
+              forestBird={forestBird}
+
+              
             />
+
           </AnimatePresence>
           <section style={{ backgroundColor: aiText }} className="stage">
             <img
@@ -210,7 +225,9 @@ function App() {
             </AnimatePresence>
           </section>
           {/* <motion.section className="uiRight"> */}
-            <Information loadMap={loadMap} />
+            <Information 
+            forestBird={forestBird}
+            loadMap={loadMap} />
           {/* </motion.section> */}
         </div>
       </motion.main>
