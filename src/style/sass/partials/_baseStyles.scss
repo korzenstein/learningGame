@@ -3,9 +3,16 @@ body {
     height:100vh;
     overflow-y: hidden;
     overflow-x: hidden;
+    padding: 0;
+    margin: 0;
 }
 
 img {
     display: block;
     width: 100%;
+}
+
+li {
+    padding:0;
+    list-style: none;
 }

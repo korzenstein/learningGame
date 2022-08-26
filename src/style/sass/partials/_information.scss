@@ -1,0 +1,140 @@
+// .information {
+//   min-width: 22vw;
+//   height: 100%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   // flex-direction: column;
+
+//   .infoContainer {
+//     height: 70%;
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//     position: relative;
+//     background-color: #d4c8bc;
+//     border-radius: 20px;
+//     .map {
+//       position: absolute;
+//       z-index: 40;
+//       width: 13vw;
+//       right: 0;
+//     }
+//   }
+// }
+
+.information {
+  width: 100%;
+  // min-width: 22vw;
+  z-index: 40;
+  max-height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  // flex-direction: column;
+
+  .infoContainer {
+    transition: 1s ease-in-out all;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "inner-div";
+    position: relative;
+    max-height: 60%;
+    border-radius: 30px;
+    .inner {
+      grid-area: inner-div;
+      width: 100%;
+    }
+    .mapImage {
+      border-radius: 30px;
+      z-index: 10;
+    }
+
+    .stained {
+      cursor: pointer;
+    }
+    .church {
+      z-index: 30;
+      cursor: pointer;
+    }
+    .boats {
+      
+      z-index: 30;
+
+      #boat1 {
+        @keyframes boat1move {
+          0% {
+            transform: translate(0%);
+          }
+          50% {
+            transform: translate(2%, 22%);
+          }
+          100% {
+            transform: translate(0%);
+          }
+        }
+        animation: boat1move 40s infinite ease-in-out;
+      }
+      #boat2 {
+        @keyframes boat2move {
+          0% {
+            transform: translate(-12%, 17%);
+          }
+
+          55% {
+            transform: translate(8%, -11%);
+          }
+
+          100% {
+            transform: translate(-12%, 17%);
+          }
+        }
+
+        animation: boat2move 50s infinite ease-in-out;
+      }
+      #boat3 {
+        @keyframes boat3move {
+          0% {
+            transform: translate(3%, -3%);
+          }
+
+          55% {
+            transform: translate(6%, -5%);
+          }
+
+          100% {
+            transform: translate(3%, -3%);
+          }
+        }
+
+        animation: boat3move 22s infinite ease-in-out;
+      }
+            #boat4 {
+              @keyframes boat4move {
+                0% {
+                  transform: translate(0%);
+                }
+      
+                55% {
+                  transform: translate(3%, -1%);
+                }
+      
+                100% {
+                  transform: translate(0%);
+                }
+              }
+      
+              animation: boat4move 13s infinite ease-in-out;
+            }
+    }
+
+    .clickables,
+    .badger {
+      z-index: 30;
+    }
+  }
+}

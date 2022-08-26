@@ -1,63 +1,63 @@
-import {motion} from 'framer-motion'
-import {useState} from 'react'
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import InformationInner from "./InformationInner";
+// import Map from './Map'
+import map from "../assets/cartograph.png";
+import stained from "../assets/stained.png";
+// import Stained from './informationParts/Stained'
 
-const rightVariant = {
-  start: {
-    opacity: 0,
-    scale: 0.5
-  },
-  normal: {
-    opacity: 1, 
-    scale: 1
-  },
-  large: {
-    opacity: 1, 
-    scale: 2
-  },
-  largest: {
-    opacity: 1, 
-    scale: 3
-  },
+const Information = ({ loadMap, forestBird }) => {
+  const [animateInfo, setAnimateInfo] = useState("normal");
+  const [toggler, setToggler] = useState(true);
 
-}
-const Information = ({mushCount}) => {
-
-  const [animateInfo, setAnimateInfo] = useState("normal")
   const handleAnimate = (choice) => {
-    setAnimateInfo(choice)
-  }
-    return (
-        <motion.div 
-        variants={rightVariant}
-        initial="start"
-      animate={animateInfo}
-      transition={{
-        default: {
-          duration: 0.3,
-          ease: [0, 0.71, 0.2, 1.01]
-        },
-        scale: {
-          type: "spring",
-          damping: 5,
-          stiffness: 100,
-          restDelta: 0.001
-        }
-      }}
-          
-          className="textBox">
-            <button
-            onClick={()=> handleAnimate("normal")}
-            >Normal</button>
-            <button
-            onClick={()=> handleAnimate("large")}
-            >Large</button>
-            <button
-            onClick={()=> handleAnimate("largest")}
-            >Largest</button>
-            <p>{mushCount}</p>
-            <p>Information</p>
-            <p>Images</p>
+    setAnimateInfo(choice);
+  };
+  return (
+    <motion.section className="information">
+      <AnimatePresence exitBeforeEnter initial={false}>
+        {loadMap ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ ease: "easeInOut", duration: 0.5 }}
+            className="infoContainer "
+          >
+            <motion.img
+              onClick={() => setToggler(!toggler)}
+              className="stained inner"
+              initial={{ opacity: 0 }}
+              animate={
+                toggler === false
+                  ? { opacity: 1, zIndex: 100 }
+                  : { opacity: 0, zIndex: 20 }
+              }
+              exit={{ opacity: 0 }}
+              transition={{ ease: "easeInOut", duration: 0.5 }}
+              src={stained}
+              alt="Stained glass design"
+            />
+
+            <motion.img
+              className="mapImage inner"
+              initial={{ opacity: 0 }}
+              animate={
+                toggler === true
+                  ? { opacity: 0.5, zIndex: 30 }
+                  : { opacity: 0, zIndex: 20 }
+              }
+              exit={{ opacity: 0 }}
+              transition={{ ease: "easeInOut", duration: 0.5 }}
+              src={map}
+              alt="Map of lands"
+            />
+            <InformationInner toggler={toggler} setToggler={setToggler} />
           </motion.div>
-    )
-}
-export default Information
+        ) : null}
+        
+      </AnimatePresence>
+    </motion.section>
+  );
+};
+export default Information;

@@ -1,39 +1,118 @@
-@media (max-width: 540px) {
-    .main {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        // flex-direction: column;
-
-        .wrapper {
-        flex-direction: column;
-        justify-content: space-between;
-            align-items: center;
-        }
+@media (max-width: 940px) {
+  .main {
+       overflow-y:scroll;
+      height: 100vh;
+      // height:auto;
+    .wrapper {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      // height: 100%;
+      width: 95%;
+      // flex-wrap: wrap;
+      // height: 100vh;
+      .title {
+        display: none;
+      }
+      .stage {
+        max-width: 65vw;
+        order:-1;
+      }
     }
+  }
 
-        .uiLeft,
-        .uiRight {
-            width: 100px;
-            height: 100px;
-            .textBox,
-            .shoppeContainer {
-                flex-direction: row;
-            }
+
+
+.main {
+  .wrapper {
+
+      .information {
+          // align-self: flex-start;
+          max-width: 90vw;
+          width: 100%;
+          display: none;
+      
+          .textBox,
+          .shoppeContainer {
+            flex-direction: row;
+          }
         }
-
+      
+        .shoppe {
+          display: none;
+          // max-width: 90vw;
+          width: 100%;
+      
+      
+          .textBox,
+          .shoppeContainer {
+            flex-direction: row;
+          }
+        }
+  }
+}
 
 }
 
+@media (max-width: 767px) {
 
-@media (max-width: 440px) {
-    .main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .wrapper {
-                width: 100%;
-            }
-    }
+
+  .main {
     
+      .wrapper {
+        
+        .stage {
+          max-width: 80vw;
+        }
+      }
+    }
+  
 }
+
+@media (max-width: 660px) {
+
+
+  .main {
+
+    .wrapper {
+
+      .stage {
+        max-width: 90vw;
+        
+      }
+    }
+  }
+
+  
+}
+
+@media (max-width: 400px) {
+
+
+  .main {
+
+    .wrapper {
+
+      .stage {
+
+        .userBubble {
+          margin-bottom: -10%;
+          margin-right: 35%;
+        }
+      }
+    }
+  }
+
+
+}
+
+// @media (max-width: 440px) {
+//   .main {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     .wrapper {
+//       width: 100%;
+//     }
+//   }
+// }
