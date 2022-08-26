@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import ShoppeInner from "./ShoppeInner";
 import forest from '../assets/forest2.png'
 import Flower from './forestParts/Flower'
+import ForestInner from './ForestInner'
 
 const Shoppe = ({
   handleShoppe,
@@ -20,6 +21,12 @@ const Shoppe = ({
    const shoppeInnerStage = useMemo(() => {
     return (
     <ShoppeInner/>)
+  }, [])
+
+ 
+    const forestInnerStage = useMemo(() => {
+    return (
+    <ForestInner/>)
   }, [])
 
                     
@@ -46,6 +53,7 @@ console.log(forestBird)
 
         {
           forestBird ? (
+
             <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -53,18 +61,10 @@ console.log(forestBird)
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer "
           >
-            <motion.img
-              className="forest inner"
-              initial={{ opacity: 0 }}
-              animate={{opacity: [0.55, 1, 0.55] }}
-              exit={{ opacity: 0 }}
-              transition={{ ease: "easeInOut", duration: 17, repeat: Infinity }}
-              // transition={{ ease: "easeInOut", duration: 0.5 }}
-              src={forest}
-              alt="Scene of the forest interior"
-            />
-            {/* <Flower/> */}
+            
+            {forestInnerStage}
           </motion.div>
+            
 
           ) : null
         }
