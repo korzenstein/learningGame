@@ -54,7 +54,7 @@ const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdCo
           >
 
             <p className="moodBirdText">
-              They call me the "mood bird". Using a simile, tell me how you're feeling today.
+              Tell me how you feel...
             </p>
           </motion.div>
         ) : null}

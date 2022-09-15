@@ -1,12 +1,13 @@
 import {motion} from 'framer-motion'
 
-const Church = ({toggler, setToggler}) => {
+
+const Church = ({handleImageChoice}) => {
     return (
       <motion.g 
       className="church inner"
-      whileHover={{scale: 1.1}}
+      whileHover={{scale: 1.3}}
       whileTap={{scale: 0.9}}
-      onClick={()=> setToggler(!toggler)}
+      onClick={() => handleImageChoice("stainedImg")}
       id="church" fillRule="evenodd" clipRule="evenodd">
         <path
           fill="#2A2024"

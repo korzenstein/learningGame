@@ -1,61 +1,68 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import InformationInner from "./InformationInner";
-// import Map from './Map'
-import map from "../assets/cartograph.png";
-import stained from "../assets/stained.png";
-// import Stained from './informationParts/Stained'
+import Cartograph from "./informationParts/Cartograph";
+import Adventure from "./informationParts/Adventure";
 
-const Information = ({ loadMap, forestBird }) => {
-  const [animateInfo, setAnimateInfo] = useState("normal");
+const Information = ({ loadMap, setLoadMap }) => {
   const [toggler, setToggler] = useState(true);
+  const [imageChoice, setImageChoice] = useState("church");
 
-  const handleAnimate = (choice) => {
-    setAnimateInfo(choice);
+
+  const handleImageChoice = (option) => {
+    setToggler(false);
+    setImageChoice((prev) => option);
+    console.log("this", option);
   };
+
+  const toggleMap = () => {
+    setToggler(false);
+  };
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        console.log(ref.current)
+        if (loadMap && ref.current && !ref.current.contains(event.target)) {
+          setLoadMap(false);
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
+
   return (
     <motion.section className="information">
       <AnimatePresence exitBeforeEnter initial={false}>
         {loadMap ? (
           <motion.div
+            ref={wrapperRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ ease: "easeInOut", duration: 0.5 }}
+            transition={{ ease: "easeInOut", duration: 0.3 }}
             className="infoContainer "
           >
-            <motion.img
-              onClick={() => setToggler(!toggler)}
-              className="stained inner"
-              initial={{ opacity: 0 }}
-              animate={
-                toggler === false
-                  ? { opacity: 1, zIndex: 100 }
-                  : { opacity: 0, zIndex: 20 }
-              }
-              exit={{ opacity: 0 }}
-              transition={{ ease: "easeInOut", duration: 0.5 }}
-              src={stained}
-              alt="Stained glass design"
+            <Adventure
+            toggler={toggler}
+            setToggler={setToggler}
+            imageChoice={imageChoice}
             />
-
-            <motion.img
-              className="mapImage inner"
-              initial={{ opacity: 0 }}
-              animate={
-                toggler === true
-                  ? { opacity: 0.5, zIndex: 30 }
-                  : { opacity: 0, zIndex: 20 }
-              }
-              exit={{ opacity: 0 }}
-              transition={{ ease: "easeInOut", duration: 0.5 }}
-              src={map}
-              alt="Map of lands"
+            <Cartograph
+            toggler={toggler}
             />
-            <InformationInner toggler={toggler} setToggler={setToggler} />
+            <InformationInner
+              toggler={toggler}
+              toggleMap={toggleMap}
+              handleImageChoice={handleImageChoice}
+            />
           </motion.div>
         ) : null}
-        
       </AnimatePresence>
     </motion.section>
   );

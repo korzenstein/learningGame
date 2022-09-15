@@ -77,7 +77,6 @@ function App() {
   const handleFox = () => {
     setAnimalChoice("fox");
     setLoadShoppe(false);
-
     setLoadFox(prev => !prev);
     console.log(loadFox)
     setLoadBadger(false);
@@ -129,11 +128,7 @@ function App() {
     }
   };
 
-  const handleInput = (event) => {
-    setUserInput(event.target.value);
-  };
-
-  const animalStage = useMemo(() => {
+  const animalMemo = useMemo(() => {
     return (
     <Animals
     handleMap={handleMap}
@@ -164,18 +159,17 @@ function App() {
         <div className="wrapper">
           <h1 className="title">Badger + Fox</h1>
           <AnimatePresence exitBeforeEnter initial={false}>
-            <Shoppe
-              itemChoice={itemChoice}
-              setItemChoice={setItemChoice}
-              goBack={goBack}
-              setShoppeArray={setShoppeArray}
-              shoppeArray={shoppeArray}
-              loadShoppe={loadShoppe}
-              animalChoice={animalChoice}
-              handleShoppe={handleShoppe}
-              forestBird={forestBird}
-
-              
+            <Shoppe {...{
+              itemChoice,
+              setItemChoice,
+              goBack,
+              setShoppeArray,
+              shoppeArray,
+              loadShoppe,
+              animalChoice,
+              handleShoppe,
+              forestBird
+            }}
             />
 
           </AnimatePresence>
@@ -185,28 +179,34 @@ function App() {
               src={background}
               alt="Illustrated forest setting"
             />
-            {animalStage}
+            {animalMemo}
             <BadgerBubble
-              loadShoppe={loadShoppe}
-              userInput={userInput}
-              toggleAPI={toggleAPI}
-              badgerConvo={badgerConvo}
-              loadBadger={loadBadger}
-              handleShoppe={handleShoppe}
+            {...{
+              loadShoppe,
+              userInput,
+              toggleAPI,
+              badgerConvo,
+              loadBadger,
+              handleShoppe
+            }}
             />
             <FoxBubble
-              userInput={userInput}
-              toggleAPI={toggleAPI}
-              foxConvo={foxConvo}
-              loadFox={loadFox}
+            {...{
+              userInput,
+              toggleAPI,
+              foxConvo,
+              loadFox
+            }}
             />
             <MoodBirdBubble
-              aiText={aiText}
-              setAiText={setAiText}
-              userInput={userInput}
-              toggleAPI={toggleAPI}
-              moodBirdConvo={moodBirdConvo}
-              loadMoodBird={loadMoodBird}
+            {...{
+              aiText,
+              setAiText,
+              userInput,
+              toggleAPI,
+              moodBirdConvo,
+              loadMoodBird
+            }}
             />
             <Firelies />
             <AnimatePresence exitBeforeEnter initial={false}>
@@ -216,7 +216,7 @@ function App() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onSubmit={getReply}
-                  onChange={handleInput}
+                  onChange={(event)=> setUserInput(event.target.value)}
                   className="inner userBubble"
                 >
                   <input className="userText" type="text" />
@@ -226,8 +226,12 @@ function App() {
           </section>
           {/* <motion.section className="uiRight"> */}
             <Information 
-            forestBird={forestBird}
-            loadMap={loadMap} />
+            {...{
+              forestBird,
+              loadMap, 
+              setLoadMap
+            }}
+         />
           {/* </motion.section> */}
         </div>
       </motion.main>

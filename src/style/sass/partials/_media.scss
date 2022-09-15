@@ -78,6 +78,7 @@
 
       .stage {
         max-width: 90vw;
+
         
       }
     }
@@ -86,7 +87,7 @@
   
 }
 
-@media (max-width: 400px) {
+@media (max-width: 440px) {
 
 
   .main {
@@ -94,6 +95,14 @@
     .wrapper {
 
       .stage {
+      
+        .inner.foxBubble {
+            margin-top: -20%;
+          }
+        
+          .inner.badgerBubble {
+            margin-top: -16%;
+          }
 
         .userBubble {
           margin-bottom: -10%;
