@@ -1,17 +1,11 @@
 import { motion } from "framer-motion";
-import { useDrop } from 'react-dnd'
 import Mushroom from './Mushroom'
-import {useEffect} from 'react'
-
-
 
 const Animals = ({
   handleBadger, 
   handleFox, 
   handleMoodBird, 
   handleMushCount, 
-  addImageToSoup, 
-  shoppeArray, 
   handleForestBird,
   handleMap}) => {
 

@@ -10,7 +10,6 @@ const Stained = ({toggler, setToggler}) => (
               }
               exit={{ opacity: 0 }}
               transition={{ ease: "easeInOut", duration: 0.5 }}
-    className="stained inner"
     id="Layer_1_xA0_Image_1_"
     xmlns="http://www.w3.org/2000/svg"
     // x={0}

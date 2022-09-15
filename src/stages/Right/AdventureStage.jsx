@@ -1,5 +1,5 @@
 import {motion} from 'framer-motion'
-import {imageOptions} from './imageOptions.js'
+import {imageOptions} from './data/imageOptions'
 
 const Adventure = ({imageChoice, toggler, setToggler}) => {
     return (

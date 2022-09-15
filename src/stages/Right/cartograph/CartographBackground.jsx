@@ -1,7 +1,7 @@
 import {motion} from 'framer-motion'
-import cartograph from "../../assets/cartograph.png";
+import cartograph from "../assets/cartographBackground.png";
 
-const Cartograph = ({toggler}) => {
+const CartographBackground = ({toggler}) => {
     return (
         <>
         <motion.img
@@ -20,4 +20,4 @@ const Cartograph = ({toggler}) => {
         </>
     )
 }
-export default Cartograph
+export default CartographBackground

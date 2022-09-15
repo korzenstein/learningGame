@@ -1,13 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import InformationInner from "./InformationInner";
-import Cartograph from "./informationParts/Cartograph";
-import Adventure from "./informationParts/Adventure";
+import CartographBackground from "./cartograph/CartographBackground";
+import AdventureStage from "./AdventureStage";
+import CartographStage from "./CartographStage";
 
-const Information = ({ loadMap, setLoadMap }) => {
+const RightStage = ({ loadMap, setLoadMap }) => {
   const [toggler, setToggler] = useState(true);
   const [imageChoice, setImageChoice] = useState("church");
-
 
   const handleImageChoice = (option) => {
     setToggler(false);
@@ -22,7 +21,7 @@ const Information = ({ loadMap, setLoadMap }) => {
   function useOutsideAlerter(ref) {
     useEffect(() => {
       function handleClickOutside(event) {
-        console.log(ref.current)
+        console.log(ref.current);
         if (loadMap && ref.current && !ref.current.contains(event.target)) {
           setLoadMap(false);
         }
@@ -46,17 +45,16 @@ const Information = ({ loadMap, setLoadMap }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ ease: "easeInOut", duration: 0.3 }}
-            className="infoContainer "
+            className="infoContainer"
           >
-            <Adventure
-            toggler={toggler}
-            setToggler={setToggler}
-            imageChoice={imageChoice}
+            <AdventureStage
+              toggler={toggler}
+              setToggler={setToggler}
+              imageChoice={imageChoice}
             />
-            <Cartograph
-            toggler={toggler}
-            />
-            <InformationInner
+            <CartographBackground
+            toggler={toggler} />
+            <CartographStage
               toggler={toggler}
               toggleMap={toggleMap}
               handleImageChoice={handleImageChoice}
@@ -67,4 +65,5 @@ const Information = ({ loadMap, setLoadMap }) => {
     </motion.section>
   );
 };
-export default Information;
+
+export default RightStage;

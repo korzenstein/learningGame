@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import badgerAI from "./textData/badgerAI";
-// import firebase from '../firebase';
+import badgerAI from "../data/badgerAI";
 
-const BadgerBubble = ({ loadBadger, toggleAPI, handleShoppe, badgerConvo, userInput}) => {
+const BadgerBubble = ({ loadBadger, toggleAPI, badgerConvo, userInput}) => {
 
   const badgerPrompt = badgerAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(badgerPrompt);

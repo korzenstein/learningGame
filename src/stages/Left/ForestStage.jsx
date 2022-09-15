@@ -1,10 +1,9 @@
-import forest from '../assets/forest2.png'
+import forest from './assets/forest2.png'
 import { motion, AnimatePresence } from "framer-motion";
 
 
-const ForestInner = () => {
+const ForestStage = () => {
     return (
-        
             <motion.img
               className="forest inner"
               initial={{ opacity: 0 }}
@@ -19,4 +18,4 @@ const ForestInner = () => {
     )
 }
 
-export default ForestInner
+export default ForestStage

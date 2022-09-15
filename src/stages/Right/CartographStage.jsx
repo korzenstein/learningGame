@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import Church from "./informationParts/Church";
-import Boats from "./informationParts/Boats";
-import Farmhouse from "./informationParts/Farmhouse";
-import Cabin from "./informationParts/Cabin";
-const InformationInner = ({ handleImageChoice, toggleMap, toggler }) => {
+import Church from "./cartograph/Church";
+import Boats from "./cartograph/Boats";
+import Farmhouse from "./cartograph/Farmhouse";
+import Cabin from "./cartograph/Cabin";
+const CartographStage = ({ handleImageChoice, toggleMap, toggler }) => {
   return (
     <motion.svg
       initial={{ opacity: 0 }}
@@ -43,4 +43,4 @@ const InformationInner = ({ handleImageChoice, toggleMap, toggler }) => {
   );
 };
 
-export default InformationInner;
+export default CartographStage;

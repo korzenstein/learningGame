@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import foxAI from "./textData/foxAI";
+import foxAI from "../data/foxAI";
 
 
 const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {

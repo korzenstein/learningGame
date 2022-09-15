@@ -1,25 +1,11 @@
 import "./style/sass/App.scss";
-
-import Animals from "./components/Animals";
-import Firelies from "./components/Fireflies";
-// User Interaces / UI
-import Shoppe from "./components/Shoppe";
-import Information from "./components/Information";
-// Speech Bubbles
-import MoodBirdBubble from "./components/speech/MoodBirdBubble";
-import BadgerBubble from "./components/speech/BadgerBubble";
-import FoxBubble from "./components/speech/FoxBubble";
-// import { Configuration, OpenAIApi } from "openai";
-import background from "./assets/transparentmini.png";
-
+import CenterStage from "./stages/Center/CenterStage";
+import RightStage from "./stages/Right/RightStage";
+import LeftStage from "./stages/Left/LeftStage"
 // Library Imports
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DragDropContext } from "react-beautiful-dnd";
-
-import shoppeItemsArray from "./components/shoppeItemsArray.js";
-
-
 
 function App() {
   // information state
@@ -37,15 +23,9 @@ function App() {
   const [animalChoice, setAnimalChoice] = useState("");
   const [userInput, setUserInput] = useState("");
   const [toggleAPI, setToggleAPI] = useState(null);
-  const [backColor, setBackColor] = useState("");
-
   const [aiText, setAiText] = useState(undefined);
-  const [shoppeArray, setShoppeArray] = useState(shoppeItemsArray);
-  const [loadMap, setLoadMap] = useState(false)
-
-  const [forestBird, setForestBird] = useState(false)
-
-  // firebase collection
+  const [loadMap, setLoadMap] = useState(false);
+  const [forestBird, setForestBird] = useState(false);
   const [sessionQuestions, setSessionQuestions] = useState([]);
   const [itemChoice, setItemChoice] = useState(false);
 
@@ -58,27 +38,27 @@ function App() {
   };
 
   const handleForestBird = () => {
-    setLoadShoppe(false)
-    setAnimalChoice("forestBird")
-    setForestBird(prev => !prev);
+    setLoadShoppe(false);
+    setAnimalChoice("forestBird");
+    setForestBird((prev) => !prev);
     setLoadBadger(false);
     setLoadFox(false);
-  }
+  };
 
   const handleBadger = () => {
     setAnimalChoice("badger");
-    setLoadShoppe(prev => !prev);
-    setLoadBadger(prev => !prev);
+    setLoadShoppe((prev) => !prev);
+    setLoadBadger((prev) => !prev);
     setLoadFox(false);
     setLoadMoodBird(false);
-    setForestBird(false)
+    setForestBird(false);
     goBack();
   };
+
   const handleFox = () => {
     setAnimalChoice("fox");
     setLoadShoppe(false);
-    setLoadFox(prev => !prev);
-    console.log(loadFox)
+    setLoadFox((prev) => !prev);
     setLoadBadger(false);
     setLoadMoodBird(false);
   };
@@ -86,19 +66,20 @@ function App() {
   const handleMoodBird = () => {
     setAnimalChoice("moodBird");
     setLoadShoppe(false);
-    setLoadMoodBird(prev => !prev);
+    setLoadMoodBird((prev) => !prev);
     setLoadBadger(false);
     setLoadFox(false);
   };
+
   const handleShoppe = () => {
-    setLoadShoppe(prev => !prev);
+    setLoadShoppe((prev) => !prev);
     setLoadBadger(false);
     goBack();
   };
 
   const handleMap = () => {
-    setLoadMap(prev => !prev)
-  }
+    setLoadMap((prev) => !prev);
+  };
 
   const getReply = (event) => {
     event.preventDefault();
@@ -128,111 +109,66 @@ function App() {
     }
   };
 
-  const animalMemo = useMemo(() => {
-    return (
-    <Animals
-    handleMap={handleMap}
-    shoppeArray={shoppeArray}
-    handleFox={handleFox}
-    handleBadger={handleBadger}
-    handleMoodBird={handleMoodBird}
-    handleMushCount={handleMushCount}
-    handleForestBird={handleForestBird}
-    />)
-  }, [])
-
-
-  
   return (
     <DragDropContext>
-      <motion.main 
-      initial={{opacity: 0}}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-       transition={{
-        default: {
-          duration: 1,
-          ease: "easeInOut"
-        }
-      }}
-      className="main">
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          default: {
+            duration: 1,
+            ease: "easeInOut",
+          },
+        }}
+        className="main"
+      >
         <div className="wrapper">
           <h1 className="title">Badger + Fox</h1>
           <AnimatePresence exitBeforeEnter initial={false}>
-            <Shoppe {...{
-              itemChoice,
-              setItemChoice,
-              goBack,
-              setShoppeArray,
-              shoppeArray,
-              loadShoppe,
-              animalChoice,
-              handleShoppe,
-              forestBird
-            }}
+            <LeftStage
+              {...{
+                itemChoice,
+                setItemChoice,
+                goBack,
+                loadShoppe,
+                animalChoice,
+                handleShoppe,
+                forestBird,
+              }}
             />
-
           </AnimatePresence>
-          <section style={{ backgroundColor: aiText }} className="stage">
-            <img
-              className="inner backImg"
-              src={background}
-              alt="Illustrated forest setting"
-            />
-            {animalMemo}
-            <BadgerBubble
-            {...{
-              loadShoppe,
-              userInput,
-              toggleAPI,
-              badgerConvo,
-              loadBadger,
-              handleShoppe
-            }}
-            />
-            <FoxBubble
-            {...{
-              userInput,
-              toggleAPI,
-              foxConvo,
-              loadFox
-            }}
-            />
-            <MoodBirdBubble
+          <CenterStage
             {...{
               aiText,
-              setAiText,
-              userInput,
+              loadBadger,
+              loadFox,
+              loadShoppe,
               toggleAPI,
+              badgerConvo,
+              handleShoppe,
+              userInput,
+              foxConvo,
+              setAiText,
               moodBirdConvo,
-              loadMoodBird
+              loadMoodBird,
+              setUserInput,
+              handleForestBird,
+              handleMushCount,
+              handleMap,
+              handleFox,
+              handleBadger,
+              handleMoodBird,
+              getReply,
             }}
-            />
-            <Firelies />
-            <AnimatePresence exitBeforeEnter initial={false}>
-              {loadFox || loadBadger || loadMoodBird ? (
-                <motion.form
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onSubmit={getReply}
-                  onChange={(event)=> setUserInput(event.target.value)}
-                  className="inner userBubble"
-                >
-                  <input className="userText" type="text" />
-                </motion.form>
-              ) : null}
-            </AnimatePresence>
-          </section>
-          {/* <motion.section className="uiRight"> */}
-            <Information 
-            {...{
+          />
+         <RightStage
+         {...{
               forestBird,
-              loadMap, 
-              setLoadMap
+              loadMap,
+              setLoadMap,
             }}
          />
-          {/* </motion.section> */}
         </div>
       </motion.main>
     </DragDropContext>
