@@ -54,8 +54,38 @@
       z-index: 20;
     }
 
+        .closeAdventure {
+          height: 25px;
+          width: 25px;
+          background-color: rgba(255, 154, 255, 0.4);
+          border-radius: 50%;
+          position: absolute;
+          cursor: pointer;
+          bottom: -7%;
+          right: 0;
+        }
+
     .adventures {
-      cursor: pointer;
+      // cursor: pointer;
+      .panelGroup {
+        position: relative;
+        display: flex;
+        // justify-content:space-between;
+        padding: 0;
+        // gap: 0.5rem;
+        // z-index: 30;
+      
+        li {
+          cursor: grabbing;
+        }
+        img {
+          pointer-events:none;
+        }
+      }
+    }
+    .farm {
+      height: auto;
+        position: relative;
     }
     .church {
       z-index: 30;

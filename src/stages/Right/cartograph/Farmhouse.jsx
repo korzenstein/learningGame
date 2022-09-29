@@ -6,7 +6,7 @@ const Farmhouse = ({handleImageChoice}) => {
       className="church inner"
       whileHover={{scale: 1.3}}
       whileTap={{scale: 0.9}}
-        onClick={() => handleImageChoice("farmexteriorImg")}
+        onClick={() => handleImageChoice("farmInterior")}
       id="farmhouse" fillRule="evenodd" clipRule="evenodd">
 
 

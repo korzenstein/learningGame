@@ -1,46 +1,28 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import CartographBackground from "./cartograph/CartographBackground";
 import AdventureStage from "./AdventureStage";
 import CartographStage from "./CartographStage";
 
-const RightStage = ({ loadMap, setLoadMap }) => {
+const RightStage = ({ loadMap }) => {
   const [toggler, setToggler] = useState(true);
-  const [imageChoice, setImageChoice] = useState("church");
+  const [advChoice, setAdvChoice] = useState("church");
 
   const handleImageChoice = (option) => {
     setToggler(false);
-    setImageChoice((prev) => option);
-    console.log("this", option);
+    setAdvChoice((prev) => option);
   };
 
   const toggleMap = () => {
     setToggler(false);
+    console.log('mmmm')
   };
-
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        console.log(ref.current);
-        if (loadMap && ref.current && !ref.current.contains(event.target)) {
-          setLoadMap(false);
-        }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
 
   return (
     <motion.section className="information">
       <AnimatePresence exitBeforeEnter initial={false}>
         {loadMap ? (
           <motion.div
-            ref={wrapperRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -48,9 +30,10 @@ const RightStage = ({ loadMap, setLoadMap }) => {
             className="infoContainer"
           >
             <AdventureStage
+              toggleMap={toggleMap}
               toggler={toggler}
               setToggler={setToggler}
-              imageChoice={imageChoice}
+              advChoice={advChoice}
             />
             <CartographBackground
             toggler={toggler} />

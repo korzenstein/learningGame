@@ -9,7 +9,7 @@ const Cabin = ({handleImageChoice}) => {
       className="church inner"
       whileHover={{scale: 1.3}}
       whileTap={{scale: 0.9}}
-    onClick={() => handleImageChoice("loftImg")}
+    onClick={() => handleImageChoice("cabinInterior")}
       fillRule="evenodd" clipRule="evenodd">
         <path
           fill="#543629"
