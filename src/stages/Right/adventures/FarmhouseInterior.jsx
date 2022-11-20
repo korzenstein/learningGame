@@ -1,20 +1,20 @@
-import cabin from "../assets/loft.png";
+import farmexterior from "../assets/farmexterior.png";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMapScene } from "../../../features/rightSlice";
 
-const CabinInterior = () => {
-  // import redux state
+const FarmInterior = () => {
   const mapSceneValue = useSelector((state) => state.right.mapScene)
-  // define handlers
+
   const dispatch = useDispatch();
+
   const handleMapSceneToggle = () => {
     dispatch(toggleMapScene());
   };
 
   return (
     <div className="farm">
-      <img src={cabin} alt="Cabin exterior" />
+      <img src={farmexterior} alt="Cabin exterior" />
       <motion.span
         whileHover={{
           scale: 1.2,
@@ -27,5 +27,4 @@ const CabinInterior = () => {
     </div>
   );
 };
-
-export default CabinInterior;
+export default FarmInterior;

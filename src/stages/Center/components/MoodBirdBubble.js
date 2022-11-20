@@ -1,8 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
+import { useSelector, useDispatch } from "react-redux";
 
-const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdConvo, userInput}) => {
+const MoodBirdBubble = ({ setAiText, aiText, toggleAPI,  userInput}) => {
+
+  const moodbirdValue = useSelector((state) => state.animal.moodbird);
+  const moodbirdStringValue = useSelector((state) => state.animal.moodbirdString);
 
   const [concatPrompt, setConcatPrompt] = useState("")
   
@@ -40,12 +44,12 @@ const MoodBirdBubble = ({ setAiText, aiText, loadMoodBird, toggleAPI, moodBirdCo
     if (toggleAPI === true) {
       moodBirdCall()
     }
-  }, [moodBirdConvo])
+  }, [moodbirdStringValue])
 
   return (
     <>
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadMoodBird ? (
+        {moodbirdValue ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

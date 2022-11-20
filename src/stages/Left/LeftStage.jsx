@@ -1,21 +1,27 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo } from "react";
-import ShoppeStage from "./ShoppeStage";
-import ForestStage from "./ForestStage";
+import ShoppeScene from "./ShoppeScene";
+import ForestScene from "./ForestScene"; 
+import { useSelector } from "react-redux";
 
-const LeftStage = ({ loadShoppe, animalChoice, forestBird }) => {
-  const ShoppeStageMemo = useMemo(() => {
-    return <ShoppeStage />;
+const LeftStage = () => {
+
+  const shoppeValue = useSelector((state) => state.left.shoppeScene);
+  const forestValue = useSelector((state) => state.left.forestScene);
+  const animalValue = useSelector((state) => state.animal.animalChoice);
+
+  const ShoppeSceneMemo = useMemo(() => {
+    return <ShoppeScene />;
   }, []);
 
-  const ForestStageMemo = useMemo(() => {
-    return <ForestStage />;
+  const ForestSceneMemo = useMemo(() => {
+    return <ForestScene />;
   }, []);
 
   return (
     <motion.section className="shoppe">
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadShoppe && animalChoice === "badger" ? (
+        {shoppeValue && animalValue === "badger" ? (
           <motion.div
             layout
             initial={{ opacity: 0 }}
@@ -24,11 +30,11 @@ const LeftStage = ({ loadShoppe, animalChoice, forestBird }) => {
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer background"
           >
-            {ShoppeStageMemo}
+            {ShoppeSceneMemo}
           </motion.div>
         ) : null}
 
-        {forestBird ? (
+        {forestValue ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -36,7 +42,7 @@ const LeftStage = ({ loadShoppe, animalChoice, forestBird }) => {
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer "
           >
-            {ForestStageMemo}
+            {ForestSceneMemo}
           </motion.div>
         ) : null}
       </AnimatePresence>

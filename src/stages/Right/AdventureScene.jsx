@@ -1,33 +1,36 @@
 import { motion } from "framer-motion";
 import ChurchInterior from "./adventures/ChurchInterior";
-import FarmInterior from "./adventures/FarmInterior";
+import FarmhouseInterior from "./adventures/FarmhouseInterior";
 import CabinInterior from "./adventures/CabinInterior";
+import { useSelector } from 'react-redux'
 
-const AdventureStage = ({ advChoice, toggler, setToggler, toggleMap }) => {
+
+const AdventureStage = () => {
+  const mapSceneValue = useSelector((state) => state.right.mapScene)
+  const adventureValue = useSelector((state) => state.right.adventure)
+
   const advOptions = {
     cabinInterior: [
-      <CabinInterior setToggler={setToggler} toggler={toggler} />,
+      <CabinInterior />,
     ],
     churchInterior: [
-      <ChurchInterior setToggler={setToggler} toggler={toggler} />,
+      <ChurchInterior />,
     ],
-    farmInterior: [<FarmInterior toggler={toggler} setToggler={setToggler} />],
+    farmInterior: [<FarmhouseInterior  />],
   };
   return (
     <motion.div
-      // onClick={() => setToggler(!toggler)}
       className="adventures inner"
       initial={{ opacity: 0 }}
       animate={
-        toggler === false
+        mapSceneValue === false
           ? { opacity: 1, zIndex: 100 }
           : { opacity: 0, zIndex: 20 }
       }
       exit={{ opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
-      // src={imageOptions[advChoice]}
     >
-      {advOptions[advChoice]}
+      {advOptions[adventureValue]}
     </motion.div>
   );
 };

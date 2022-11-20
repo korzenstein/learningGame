@@ -2,13 +2,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import foxAI from "../data/foxAI";
+import { useSelector } from "react-redux";
 
 
-const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
+const FoxBubble = ({ toggleAPI,  userInput}) => {
 
   const foxPrompt = foxAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(foxPrompt);
   const [aiText, setAiText] = useState(undefined)
+  const foxValue = useSelector((state) => state.animal.fox);
+  const foxStringValue = useSelector((state) => state.animal.foxString);
 
   // console.log(foxPrompt)
 
@@ -40,12 +43,12 @@ const FoxBubble = ({ loadFox, toggleAPI, foxConvo, userInput}) => {
       call()
     }
 
-  }, [foxConvo]);
+  }, [foxStringValue]);
 
   return (
     <>
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadFox ? (
+        {foxValue ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

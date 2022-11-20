@@ -1,27 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import CartographBackground from "./cartograph/CartographBackground";
-import AdventureStage from "./AdventureStage";
-import CartographStage from "./CartographStage";
+import CartographBackground from "./cartographPuppets/CartographBackground";
+import AdventureScene from "./AdventureScene";
+import CartographScene from "./CartographScene";
+import { useSelector } from "react-redux";
 
-const RightStage = ({ loadMap }) => {
-  const [toggler, setToggler] = useState(true);
-  const [advChoice, setAdvChoice] = useState("church");
-
-  const handleImageChoice = (option) => {
-    setToggler(false);
-    setAdvChoice((prev) => option);
-  };
-
-  const toggleMap = () => {
-    setToggler(false);
-    console.log('mmmm')
-  };
+const RightStage = () => {
+  
+  const rightStageValue = useSelector((state) => state.right.rightStage);
 
   return (
     <motion.section className="information">
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadMap ? (
+        {rightStageValue ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -29,19 +19,9 @@ const RightStage = ({ loadMap }) => {
             transition={{ ease: "easeInOut", duration: 0.3 }}
             className="infoContainer"
           >
-            <AdventureStage
-              toggleMap={toggleMap}
-              toggler={toggler}
-              setToggler={setToggler}
-              advChoice={advChoice}
-            />
-            <CartographBackground
-            toggler={toggler} />
-            <CartographStage
-              toggler={toggler}
-              toggleMap={toggleMap}
-              handleImageChoice={handleImageChoice}
-            />
+            <CartographBackground />
+            <AdventureScene />
+            <CartographScene />
           </motion.div>
         ) : null}
       </AnimatePresence>

@@ -1,14 +1,16 @@
 import {motion} from 'framer-motion'
 import cartograph from "../assets/cartographBackground.png";
+import { useSelector } from 'react-redux'
 
-const CartographBackground = ({toggler}) => {
+const CartographBackground = () => {
+  const mapSceneValue = useSelector((state) => state.right.mapScene)
     return (
         <>
         <motion.img
               className="mapImage inner"
               initial={{ opacity: 0 }}
               animate={
-                toggler === true
+                mapSceneValue === true
                   ? { opacity: 0.5, zIndex: 30 }
                   : { opacity: 0, zIndex: 20 }
               }

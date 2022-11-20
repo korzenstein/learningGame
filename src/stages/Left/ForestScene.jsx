@@ -1,9 +1,10 @@
 import forest from './assets/forest2.png'
 import { motion, AnimatePresence } from "framer-motion";
+import Sleepy from './forestPuppets/Sleepy'
 
-
-const ForestStage = () => {
+const ForestScene = () => {
     return (
+      <>
             <motion.img
               className="forest inner"
               initial={{ opacity: 0 }}
@@ -14,8 +15,10 @@ const ForestStage = () => {
               src={forest}
               alt="Scene of the forest interior"
             />
+            <Sleepy/>
+            </>
          
     )
 }
 
-export default ForestStage
+export default ForestScene

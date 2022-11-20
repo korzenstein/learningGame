@@ -1,41 +1,26 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo } from "react";
 import ShoppeInner from "./ShoppeInner";
-import forest from '../assets/forest2.png'
-import Flower from './forestParts/Flower'
-import ForestInner from './ForestInner'
+import ForestInner from "./ForestInner";
+import { useSelector } from "react-redux";
 
-const Shoppe = ({
-  handleShoppe,
-  loadShoppe,
-  animalChoice,
-  shoppeArray, 
-  setShoppeArray,
-  itemChoice,
-  setItemChoice,
-  goBack, 
-  forestBird
-}) => {
-  
+const Shoppe = () => {
+  const shoppeInnerStage = useMemo(() => {
+    return <ShoppeInner />;
+  }, []);
 
-   const shoppeInnerStage = useMemo(() => {
-    return (
-    <ShoppeInner/>)
-  }, [])
+  const forestInnerStage = useMemo(() => {
+    return <ForestInner />;
+  }, []);
 
- 
-    const forestInnerStage = useMemo(() => {
-    return (
-    <ForestInner/>)
-  }, [])
-
-                    
-console.log(forestBird)
+  const shoppeValue = useSelector((state) => state.left.shoppeScene);
+  const forestValue = useSelector((state) => state.left.forestScene);
+  const animalValue = useSelector((state) => state.animal.animalChoice);
 
   return (
     <motion.section className="shoppe">
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadShoppe && animalChoice === "badger" ? (
+        {shoppeValue && animalValue === "badger" ? (
           <motion.div
             layout
             initial={{ opacity: 0 }}
@@ -45,29 +30,20 @@ console.log(forestBird)
             className="shoppeContainer background"
           >
             {shoppeInnerStage}
-                  </motion.div>          
-            ) : 
-            null
-            }
-          
+          </motion.div>
+        ) : null}
 
-        {
-          forestBird ? (
-
-            <motion.div
+        {forestValue ? (
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer "
           >
-            
             {forestInnerStage}
           </motion.div>
-            
-
-          ) : null
-        }
+        ) : null}
       </AnimatePresence>
     </motion.section>
   );

@@ -1,9 +1,6 @@
 import Animals from "./puppets/Animals";
 import Fireflies from "./puppets/Fireflies";
 import Mushroom from "./puppets/Mushroom";
-
-// User Interaces / UI
-
 // Speech Bubbles
 import MoodBirdBubble from "./components/MoodBirdBubble";
 import BadgerBubble from "./components/BadgerBubble";
@@ -12,43 +9,25 @@ import FoxBubble from "./components/FoxBubble";
 import background from "./assets/transparentmini.png";
 import { useMemo } from "react";
 // Library Imports
-
 import { motion, AnimatePresence } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
 
 const CenterStage = ({
   aiText,
-  loadBadger,
-  loadFox,
-  loadShoppe,
   toggleAPI,
-  badgerConvo,
-  handleShoppe,
   userInput,
-  foxConvo,
   setAiText,
-  moodBirdConvo,
-  loadMoodBird,
   setUserInput,
-  handleForestBird,
-  handleMushCount,
-  handleMap,
-  handleFox,
-  handleBadger,
-  handleMoodBird,
   getReply,
 }) => {
   const animalMemo = useMemo(() => {
-    return (
-      <Animals
-        handleMap={handleMap}
-        handleFox={handleFox}
-        handleBadger={handleBadger}
-        handleMoodBird={handleMoodBird}
-        handleMushCount={handleMushCount}
-        handleForestBird={handleForestBird}
-      />
-    );
+    return <Animals />;
   }, []);
+
+  const moodbirdValue = useSelector((state) => state.animal.moodbird);
+  const badgerValue = useSelector((state) => state.animal.badger);
+  const foxValue = useSelector((state) => state.animal.fox);
+
   return (
     <section style={{ backgroundColor: aiText }} className="stage">
       <img
@@ -59,20 +38,14 @@ const CenterStage = ({
       {animalMemo}
       <BadgerBubble
         {...{
-          loadShoppe,
           userInput,
           toggleAPI,
-          badgerConvo,
-          loadBadger,
-          handleShoppe,
         }}
       />
       <FoxBubble
         {...{
           userInput,
           toggleAPI,
-          foxConvo,
-          loadFox,
         }}
       />
       <MoodBirdBubble
@@ -81,13 +54,11 @@ const CenterStage = ({
           setAiText,
           userInput,
           toggleAPI,
-          moodBirdConvo,
-          loadMoodBird,
         }}
       />
       <Fireflies />
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadFox || loadBadger || loadMoodBird ? (
+        {foxValue || badgerValue || moodbirdValue ? (
           <motion.form
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

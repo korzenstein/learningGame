@@ -2,19 +2,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import badgerAI from "../data/badgerAI";
+import { useSelector } from "react-redux";
 
-const BadgerBubble = ({ loadBadger, toggleAPI, badgerConvo, userInput}) => {
-
+const BadgerBubble = ({ toggleAPI, userInput }) => {
   const badgerPrompt = badgerAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(badgerPrompt);
-  const [aiText, setAiText] = useState(undefined)
+  const [aiText, setAiText] = useState(undefined);
+  const badgerValue = useSelector((state) => state.animal.badger);
+  const badgerStringValue = useSelector((state) => state.animal.badgerString);
+
 
   useEffect(() => {
-    setConcatPrompt(badgerPrompt.concat(userInput))
-  }, [userInput])
+    setConcatPrompt(badgerPrompt.concat(userInput));
+  }, [userInput]);
 
   useEffect(() => {
-    const call = async () => {   
+    const call = async () => {
       const configur = new Configuration({
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
       });
@@ -28,44 +31,35 @@ const BadgerBubble = ({ loadBadger, toggleAPI, badgerConvo, userInput}) => {
         frequency_penalty: 0,
         presence_penalty: 0,
         // stop: ["\n"],
-      })
-      setAiText(response.data.choices[0].text)
+      });
+      setAiText(response.data.choices[0].text);
       // console.log(setAiText)
-    }; 
-    
+    };
+
     if (toggleAPI === true) {
-      call()
+      call();
     }
-  }, [badgerConvo]);
+  }, [badgerStringValue]);
+
 
   return (
     <>
       <AnimatePresence exitBeforeEnter initial={false}>
-        {loadBadger ? (
+        {badgerValue ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="inner badgerBubble"
           >
-            {
-              toggleAPI && aiText !== undefined ?
+            {toggleAPI && aiText !== undefined ? (
               <p className="badgerText">{aiText}</p>
-              :
-
+            ) : (
               <p className="badgerText">
-              Why hello there! Welcome to my shoppe in the woods. Please, ask me any questions you have.
-              {/* <button className="testButton" onClick={handleShoppe}>
-                Shoppe Here!
-              </button> */}
-            </p>
-            }
-              
-              
-               
-              
-            
-            
+                Why hello there! Welcome to my shoppe in the woods. Please, ask
+                me any questions you have.
+              </p>
+            )}
           </motion.div>
         ) : null}
       </AnimatePresence>

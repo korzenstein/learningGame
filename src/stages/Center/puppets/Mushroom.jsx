@@ -1,10 +1,9 @@
 import {motion } from 'framer-motion'
-const Mushroom = ({handleMushCount}) => {
-    console.log(handleMushCount)
+const Mushroom = () => {
     return (
         <motion.g 
         whileTap={{scale: 1.5}}
-        onClick={() => handleMushCount(2)}
+        // onClick={() => handleMushCount(2)}
         id='mushroom2'>
           <path
             fill='#9B8359'
