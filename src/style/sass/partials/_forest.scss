@@ -1,5 +1,6 @@
 
 .zzz {
+    cursor: pointer;
     animation-name: zzz;
     animation-duration: 2.8s;
     animation-timing-function: ease-out;
@@ -9,7 +10,7 @@
     font-weight: bold;
     position: absolute;
     z-index: 100;
-    // transform: translateY(100%);
+    bottom: 40%;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -34,7 +35,7 @@
         opacity: 0;
         color: white;
         font-size: 2px;
-        transform: translateY(100%);
+        transform: translateY(0%);
     }
 
     50% {

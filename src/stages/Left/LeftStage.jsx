@@ -20,7 +20,7 @@ const LeftStage = () => {
 
   return (
     <motion.section className="shoppe">
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence>
         {shoppeValue && animalValue === "badger" ? (
           <motion.div
             layout

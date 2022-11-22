@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const MoodBirdBubble = ({ setAiText, aiText, toggleAPI,  userInput}) => {
 
@@ -48,7 +48,7 @@ const MoodBirdBubble = ({ setAiText, aiText, toggleAPI,  userInput}) => {
 
   return (
     <>
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence>
         {moodbirdValue ? (
           <motion.div
             initial={{ opacity: 0 }}

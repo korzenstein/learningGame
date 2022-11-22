@@ -3,15 +3,18 @@ import "./style/sass/App.scss";
 import CenterStage from "./stages/Center/CenterStage";
 import RightStage from "./stages/Right/RightStage";
 import LeftStage from "./stages/Left/LeftStage";
+import InventoryNav from "./stages/Inventory/InventoryNav";
+
 // Library Imports
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
   converseMoodbird,
   converseBadger,
   converseFox,
+  toggleCenterStage,
 } from "./features/animalSlice.js";
 
 const App = () => {
@@ -72,10 +75,11 @@ const App = () => {
       }}
     >
       <div className="wrapper">
-        <h1 className="title">Badger + Fox</h1>
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <LeftStage />
-        </AnimatePresence>
+        <h1 onClick={() => dispatch(toggleCenterStage())} className="title">
+          Badger + Fox
+        </h1>
+        <LeftStage />
+        <InventoryNav/>
         <CenterStage
           {...{
             aiText,

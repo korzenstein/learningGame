@@ -17,8 +17,15 @@ import MortarPestal from "./shoppeItems/MortarPestal";
 import Sachel from "./shoppeItems/Sachel";
 
 import { motion } from "framer-motion";
+import {useEffect} from "react"
 
-const ShoppeInner = () => (
+
+
+const ShoppeInner = () => {
+  useEffect(() => {
+    console.log('useEffect')
+  }, [])
+return (
   <motion.svg
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
@@ -60,5 +67,10 @@ const ShoppeInner = () => (
       <Rations />
     </g>
   </motion.svg>
-);
+  
+
+  
+)
+}
+
 export default ShoppeInner;

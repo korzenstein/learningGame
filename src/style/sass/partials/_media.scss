@@ -1,8 +1,8 @@
 @media (max-width: 940px) {
   .main {
-       overflow-y:scroll;
-      height: 100vh;
-      // height:auto;
+    overflow-y: scroll;
+    height: 100vh;
+    // height:auto;
     .wrapper {
       flex-direction: column;
       justify-content: space-between;
@@ -16,93 +16,75 @@
       }
       .stage {
         max-width: 65vw;
-        order:-1;
+        order: -1;
       }
     }
   }
-
-
-
-.main {
-  .wrapper {
-
-      .information {
-          // align-self: flex-start;
-          max-width: 90vw;
-          width: 100%;
-          display: none;
-      
-          .textBox,
-          .shoppeContainer {
-            flex-direction: row;
-          }
-        }
-      
-        .shoppe {
-          display: none;
-          // max-width: 90vw;
-          width: 100%;
-      
-      
-          .textBox,
-          .shoppeContainer {
-            flex-direction: row;
-          }
-        }
-  }
-}
-
-}
-
-@media (max-width: 767px) {
-
 
   .main {
-    
-      .wrapper {
-        
-        .stage {
-          max-width: 80vw;
+    .wrapper {
+      .inventory {
+          display: none;
+        }
+      .information {
+        // align-self: flex-start;
+        max-width: 90vw;
+        width: 100%;
+        display: none;
+
+        .textBox,
+        .shoppeContainer {
+          flex-direction: row;
+        }
+      }
+
+      .shoppe {
+        display: none;
+        // max-width: 90vw;
+        width: 100%;
+
+        .textBox,
+        .shoppeContainer {
+          flex-direction: row;
         }
       }
     }
-  
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  .main {
+    .wrapper {
+      .stage {
+        max-width: 80vw;
+      }
+    }
+  }
 }
 
 @media (max-width: 660px) {
-
-
   .main {
-
     .wrapper {
-
       .stage {
         max-width: 90vw;
-
-        
       }
     }
   }
-
-  
 }
 
 @media (max-width: 440px) {
-
-
   .main {
-
     .wrapper {
-
       .stage {
-      
         .inner.foxBubble {
-            margin-top: -20%;
-          }
-        
-          .inner.badgerBubble {
-            margin-top: -16%;
-          }
+          margin-top: -20%;
+        }
+
+        .inner.badgerBubble {
+          margin-top: -16%;
+        }
 
         .userBubble {
           margin-bottom: -10%;
@@ -111,8 +93,6 @@
       }
     }
   }
-
-
 }
 
 // @media (max-width: 440px) {

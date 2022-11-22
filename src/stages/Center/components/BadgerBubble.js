@@ -32,8 +32,8 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
         presence_penalty: 0,
         // stop: ["\n"],
       });
+      console.log(response.data)
       setAiText(response.data.choices[0].text);
-      // console.log(setAiText)
     };
 
     if (toggleAPI === true) {
@@ -44,7 +44,7 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
 
   return (
     <>
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence>
         {badgerValue ? (
           <motion.div
             initial={{ opacity: 0 }}

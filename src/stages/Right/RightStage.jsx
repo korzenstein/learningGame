@@ -10,13 +10,13 @@ const RightStage = () => {
 
   return (
     <motion.section className="information">
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence>
         {rightStageValue ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ ease: "easeInOut", duration: 0.3 }}
+            transition={{ ease: "easeInOut", duration: 0.2 }}
             className="infoContainer"
           >
             <CartographBackground />

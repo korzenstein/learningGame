@@ -1,8 +1,13 @@
 import { motion} from 'framer-motion'
+import {useSelector, useDispatch} from 'react-redux'
 
 const VialC = () => {
+
+  const vialCValue = useSelector((state) => state.store.vialC)
+
     return (
-        <motion.g 
+      <motion.g 
+      title={vialCValue}
       drag
       id="vialC">
         <path

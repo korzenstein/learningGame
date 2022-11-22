@@ -8,6 +8,7 @@ const initialState = {
   fox: false,
   badger: false,
   moodbird: false,
+  title: false,
 };
 
 const animalSlice = createSlice({
@@ -44,6 +45,9 @@ const animalSlice = createSlice({
     moodbirdOff(state) {
       state.moodbird = false;
     },
+    toggleCenterStage(state) {
+      state.title = !state.title
+    }
   },
 });
 
@@ -58,6 +62,7 @@ export const {
   moodbirdOff,
   converseMoodbird,
   converseBadger,
-  converseFox
+  converseFox,
+  toggleCenterStage
 } = animalSlice.actions;
 export default animalSlice.reducer;
