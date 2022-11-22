@@ -1,14 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo } from "react";
 import ShoppeScene from "./ShoppeScene";
-import ForestScene from "./ForestScene"; 
+import ForestScene from "./ForestScene";
 import { useSelector } from "react-redux";
 
 const LeftStage = () => {
-
   const shoppeValue = useSelector((state) => state.left.shoppeScene);
   const forestValue = useSelector((state) => state.left.forestScene);
   const animalValue = useSelector((state) => state.animal.animalChoice);
+  const userChoiceValue = useSelector((state) => state.store.userChoice);
 
   const ShoppeSceneMemo = useMemo(() => {
     return <ShoppeScene />;
@@ -19,7 +19,7 @@ const LeftStage = () => {
   }, []);
 
   return (
-    <motion.section className="shoppe">
+    <motion.section className="leftStage">
       <AnimatePresence>
         {shoppeValue && animalValue === "badger" ? (
           <motion.div
@@ -30,6 +30,10 @@ const LeftStage = () => {
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer background"
           >
+            <motion.p 
+            className="userChoice">{userChoiceValue?.name}
+            <span>{`£${userChoiceValue?.price}`}</span>
+            </motion.p>
             {ShoppeSceneMemo}
           </motion.div>
         ) : null}

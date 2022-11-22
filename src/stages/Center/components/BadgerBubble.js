@@ -10,6 +10,8 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
   const [aiText, setAiText] = useState(undefined);
   const badgerValue = useSelector((state) => state.animal.badger);
   const badgerStringValue = useSelector((state) => state.animal.badgerString);
+  const userChoiceValue = useSelector((state) => state.store.userChoice);
+
 
 
   useEffect(() => {
@@ -55,7 +57,11 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
             {toggleAPI && aiText !== undefined ? (
               <p className="badgerText">{aiText}</p>
             ) : (
+              userChoiceValue.spiel ?
               <p className="badgerText">
+                {userChoiceValue.spiel}
+              </p>
+              : <p className="badgerText">
                 Why hello there! Welcome to my shoppe in the woods. Please, ask
                 me any questions you have.
               </p>
