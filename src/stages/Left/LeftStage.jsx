@@ -21,12 +21,12 @@ const LeftStage = () => {
   return (
     <motion.section className="leftStage">
       <AnimatePresence>
-        {shoppeValue && animalValue === "badger" ? (
+        {shoppeValue === true && animalValue === "badger" ? (
           <motion.div
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            
+            initial={{ opacity: 0, zIndex: 20 }}
+            animate={{ opacity: 1, zIndex: 100 }}
+            exit={{ opacity: 0, zIndex: 20 }}
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer background"
           >
@@ -40,9 +40,10 @@ const LeftStage = () => {
 
         {forestValue ? (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            
+            initial={{ opacity: 0, zIndex: 20 }}
+            animate={{ opacity: 1, zIndex: 100 }}
+            exit={{ opacity: 0, zIndex: 20 }}
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer "
           >

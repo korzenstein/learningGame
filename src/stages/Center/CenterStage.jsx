@@ -28,6 +28,8 @@ const CenterStage = ({
   const badgerValue = useSelector((state) => state.animal.badger);
   const foxValue = useSelector((state) => state.animal.fox);
 
+  console.log(badgerValue)
+
   return (
     <motion.section 
     style={{ backgroundColor: aiText }} className="stage">

@@ -43,6 +43,7 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
     }
   }, [badgerStringValue]);
 
+  
 
   return (
     <>

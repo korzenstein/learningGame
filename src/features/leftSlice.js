@@ -3,20 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   shoppeScene: false,
   forestScene: false,
+  cartographScene: false,
 };
 
 const leftSlice = createSlice({
   name: "left",
   initialState,
   reducers: {
-    toggleShoppeScene(state) {
-      state.shoppeScene = !state.shoppeScene;
+    toggleScenes(state, action) {
+      if (action.payload.scene === "forest") {
+        state.shoppeScene = false;
+        state.forestScene = !state.forestScene;
+      } else if (action.payload.scene === "shoppe"){
+        state.shoppeScene = !state.shoppeScene;
+        state.forestScene = false;
+      } else if (action.payload.scene === "cartograph") {
+        state.cartographScene = !state.cartographScene;
+      } 
     },
+
     shoppeSceneOff(state) {
       state.shoppeScene = false;
-    },
-    toggleForestScene(state) {
-      state.forestScene = !state.forestScene;
     },
     forestSceneOff(state) {
       state.forestScene = false;
@@ -26,6 +33,7 @@ const leftSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  toggleScenes,
   toggleForestScene,
   forestSceneOff,
   toggleShoppeScene,

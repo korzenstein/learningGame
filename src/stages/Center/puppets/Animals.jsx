@@ -1,63 +1,32 @@
 import { motion } from "framer-motion";
 import Mushroom from "./Mushroom";
 import { useDispatch } from "react-redux";
-import { toggleRightStage } from "../../../features/rightSlice";
-
-import {
-  toggleShoppeScene,
-  shoppeSceneOff,
-  toggleForestScene,
-  forestSceneOff,
-} from "../../../features/leftSlice.js";
-
-import {
-  chooseAnimal,
-  toggleFox,
-  toggleBadger,
-  toggleMoodbird,
-  foxOff,
-  badgerOff,
-  moodbirdOff,
-} from "../../../features/animalSlice.js";
+import {toggleScenes} from "../../../features/leftSlice.js";
+import {toggleAnimals} from "../../../features/animalSlice.js";
 
 const Animals = () => {
   const dispatch = useDispatch();
 
   const handleForestBird = () => {
-    dispatch(shoppeSceneOff());
-    dispatch(chooseAnimal("forestBird"));
-    dispatch(toggleForestScene());
-    dispatch(badgerOff());
-    dispatch(foxOff());
+    dispatch(toggleScenes({ scene: "forest" }));
+    dispatch(toggleAnimals({ animal: "forestbird" }));
   };
 
   const handleBadger = () => {
-    dispatch(chooseAnimal("badger"));
-    dispatch(toggleShoppeScene());
-    dispatch(forestSceneOff());
-    dispatch(toggleBadger());
-    dispatch(foxOff());
-    dispatch(moodbirdOff());
+    dispatch(toggleScenes({ scene: "shoppe" }));
+    dispatch(toggleAnimals({ animal: "badger" }));
   };
 
   const handleFox = () => {
-    dispatch(chooseAnimal("fox"));
-    dispatch(shoppeSceneOff());
-    dispatch(toggleFox());
-    dispatch(badgerOff());
-    dispatch(moodbirdOff());
+    dispatch(toggleAnimals({ animal: "fox" }));
   };
 
   const handleMoodBird = () => {
-    dispatch(chooseAnimal("moodBird"));
-    dispatch(shoppeSceneOff());
-    dispatch(toggleMoodbird());
-    dispatch(badgerOff());
-    dispatch(foxOff());
+    dispatch(toggleAnimals({ animal: "moodbird" }));
   };
 
-  const toggleRightStageHandler = () => {
-    dispatch(toggleRightStage());
+  const handleCartoBird = () => {
+    dispatch(toggleScenes({ scene: "cartograph" }));
   };
 
   return (
@@ -2352,7 +2321,7 @@ const Animals = () => {
           ></path>
         </motion.g>
         <motion.g
-          onClick={toggleRightStageHandler}
+          onClick={handleCartoBird}
           animate={{ rotate: [0, 3, 0] }}
           transition={{ ease: "easeInOut", duration: 1.9, repeat: Infinity }}
           id="birdRight"

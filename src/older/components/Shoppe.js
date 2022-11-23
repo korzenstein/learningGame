@@ -20,7 +20,7 @@ const Shoppe = () => {
   return (
     <motion.section className="shoppe">
       <AnimatePresence>
-        {shoppeValue && animalValue === "badger" ? (
+        {shoppeValue === true && animalValue === "badger" ? (
           <motion.div
             layout
             initial={{ opacity: 0 }}

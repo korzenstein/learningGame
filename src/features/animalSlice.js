@@ -8,6 +8,8 @@ const initialState = {
   fox: false,
   badger: false,
   moodbird: false,
+  cartobird: false,
+  forestbird: false,
   title: false,
 };
 
@@ -15,9 +17,31 @@ const animalSlice = createSlice({
   name: "animal",
   initialState,
   reducers: {
-    chooseAnimal(state, action) {
-      state.animalChoice = action.payload;
-    },
+    toggleAnimals(state, action) {
+      if (action.payload.animal === "fox") {
+        state.fox = !state.fox;
+        state.badger = false;
+        state.moodbird = false;
+      } else if (action.payload.animal === "badger"){
+        state.badger = !state.badger;
+        state.fox = false;
+        state.moodbird = false;
+      } else if (action.payload.animal === "moodbird") {
+        state.moodbird = !state.moodbird;
+        state.badger = false;
+        state.fox = false;
+      } else if (action.payload.animal === "forestbird") {
+        // state.forestbird = !state.forestbird;
+        state.badger = false;
+        state.moodbird = false;
+      } else if (action.payload.animal === "cartobird") {
+        state.cartobird = !state.cartobird;
+        state.badger = false;
+        state.moodbird = false;
+        state.moodbird = false;
+    }
+  },
+
     converseFox(state, action) {
       state.foxString = action.payload;
     },
@@ -27,24 +51,7 @@ const animalSlice = createSlice({
     converseMoodbird(state, action) {
       state.moodbirdString = action.payload;
     },
-    toggleFox(state) {
-      state.fox = !state.fox;
-    },
-    foxOff(state) {
-      state.fox = false;
-    },
-    toggleBadger(state) {
-      state.badger = !state.badger;
-    },
-    badgerOff(state) {
-      state.badger = false;
-    },
-    toggleMoodbird(state) {
-      state.moodbird = !state.moodbird;
-    },
-    moodbirdOff(state) {
-      state.moodbird = false;
-    },
+
     toggleCenterStage(state) {
       state.title = !state.title
     }
@@ -53,13 +60,7 @@ const animalSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  chooseAnimal, 
-  toggleFox,
-  toggleBadger,
-  toggleMoodbird,
-  foxOff,
-  badgerOff,
-  moodbirdOff,
+  toggleAnimals,
   converseMoodbird,
   converseBadger,
   converseFox,

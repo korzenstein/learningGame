@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const RightStage = () => {
   
-  const rightStageValue = useSelector((state) => state.right.rightStage);
+  const rightStageValue = useSelector((state) => state.left.cartographScene);
 
   return (
     <motion.section className="information">
