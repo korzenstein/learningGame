@@ -22,23 +22,28 @@ const animalSlice = createSlice({
         state.fox = !state.fox;
         state.badger = false;
         state.moodbird = false;
+        state.animalChoice = "fox"
       } else if (action.payload.animal === "badger"){
         state.badger = !state.badger;
         state.fox = false;
         state.moodbird = false;
+        state.animalChoice = "badger"
       } else if (action.payload.animal === "moodbird") {
         state.moodbird = !state.moodbird;
         state.badger = false;
         state.fox = false;
+        state.animalChoice = "moodbird"
       } else if (action.payload.animal === "forestbird") {
         // state.forestbird = !state.forestbird;
         state.badger = false;
         state.moodbird = false;
+        state.animalChoice = "forestbird"
       } else if (action.payload.animal === "cartobird") {
         state.cartobird = !state.cartobird;
         state.badger = false;
         state.moodbird = false;
         state.moodbird = false;
+        state.animalChoice = "cartobird"
     }
   },
 

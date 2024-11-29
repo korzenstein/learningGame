@@ -33,7 +33,7 @@ const Shoppe = () => {
           </motion.div>
         ) : null}
 
-        {forestValue ? (
+        {forestValue === true ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

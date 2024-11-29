@@ -23,24 +23,25 @@ const LeftStage = () => {
       <AnimatePresence>
         {shoppeValue === true && animalValue === "badger" ? (
           <motion.div
-            
             initial={{ opacity: 0, zIndex: 20 }}
             animate={{ opacity: 1, zIndex: 100 }}
             exit={{ opacity: 0, zIndex: 20 }}
             transition={{ ease: "easeInOut", duration: 1 }}
             className="shoppeContainer background"
           >
-            <motion.p 
-            className="userChoice">{userChoiceValue?.name}
-            <span>{`£${userChoiceValue?.price}`}</span>
-            </motion.p>
+            {userChoiceValue.name !== undefined ? (
+              <motion.p className="userChoice">
+                {userChoiceValue.name}
+                <span>{`£${userChoiceValue.price}`}</span>
+              </motion.p>
+            ) : null}
+
             {ShoppeSceneMemo}
           </motion.div>
         ) : null}
 
         {forestValue ? (
           <motion.div
-            
             initial={{ opacity: 0, zIndex: 20 }}
             animate={{ opacity: 1, zIndex: 100 }}
             exit={{ opacity: 0, zIndex: 20 }}

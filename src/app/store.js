@@ -4,6 +4,7 @@ import leftSlice from '../features/leftSlice'
 import animalSlice from '../features/animalSlice'
 import inventorySlice from '../features/inventorySlice'
 import storeSlice from '../features/storeSlice'
+import forestSlice from '../features/forestSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     animal: animalSlice,
     inventory: inventorySlice,
     store: storeSlice,
+    forest: forestSlice,
   },
 })
