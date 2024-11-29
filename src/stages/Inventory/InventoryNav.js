@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import NavItems from "./NavItems";
-import { useSelector } from "react-redux";
-
+import useAnimalStore from "../../store/useAnimalStore";
 const InventoryNav = () => {
-  const titleValue = useSelector((state) => state.animal.title);
+  const { title } = useAnimalStore();
 
   const navVariants = {
     open: {
@@ -37,7 +36,7 @@ const InventoryNav = () => {
   return (
     <motion.nav
       initial={false}
-      animate={titleValue ? "open" : "closed"}
+      animate={title ? "open" : "closed"}
       className="nav"
       variants={navVariants}
     >

@@ -2,21 +2,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import badgerAI from "../data/badgerAI";
-import { useSelector } from "react-redux";
+import useAnimalStore from "../../../store/useAnimalStore"; 
 
 const BadgerBubble = ({ toggleAPI, userInput }) => {
   const badgerPrompt = badgerAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(badgerPrompt);
   const [aiText, setAiText] = useState(undefined);
-  const badgerValue = useSelector((state) => state.animal.badger);
-  const badgerStringValue = useSelector((state) => state.animal.badgerString);
-  const userChoiceValue = useSelector((state) => state.store.userChoice);
 
-
+  // Extracting directly from Zustand store
+  const { badger, badgerString, animalChoice } = useAnimalStore();
 
   useEffect(() => {
     setConcatPrompt(badgerPrompt.concat(userInput));
-  }, [userInput]);
+  }, [userInput, badgerPrompt]);
 
   useEffect(() => {
     const call = async () => {
@@ -32,37 +30,30 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
-        // stop: ["\n"],
       });
-      console.log(response.data)
+      console.log(response.data);
       setAiText(response.data.choices[0].text);
     };
 
-    if (toggleAPI === true) {
+    if (toggleAPI) {
       call();
     }
-  }, [badgerStringValue]);
-
-  
+  }, [concatPrompt, toggleAPI, badgerString]);
 
   return (
     <>
       <AnimatePresence>
-        {badgerValue ? (
+        {badger && animalChoice === "badger" ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="inner badgerBubble"
           >
-            {toggleAPI && aiText !== undefined ? (
+            {toggleAPI && aiText ? (
               <p className="badgerText">{aiText}</p>
             ) : (
-              userChoiceValue.spiel ?
               <p className="badgerText">
-                {userChoiceValue.spiel}
-              </p>
-              : <p className="badgerText">
                 Why hello there! Welcome to my shoppe in the woods. Please, ask
                 me any questions you have.
               </p>
@@ -73,4 +64,5 @@ const BadgerBubble = ({ toggleAPI, userInput }) => {
     </>
   );
 };
+
 export default BadgerBubble;

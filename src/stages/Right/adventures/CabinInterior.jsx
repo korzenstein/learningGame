@@ -1,15 +1,12 @@
 import cabin from "../assets/loft.png";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleMapScene } from "../../../features/rightSlice";
+import useRightStore from "../../../store/useRightStore";
 
 const CabinInterior = () => {
-  // import redux state
-  const mapSceneValue = useSelector((state) => state.right.mapScene)
-  // define handlers
-  const dispatch = useDispatch();
+  const { mapScene, toggleMapScene } = useRightStore();
+
   const handleMapSceneToggle = () => {
-    dispatch(toggleMapScene());
+    toggleMapScene();
   };
 
   return (
@@ -21,7 +18,7 @@ const CabinInterior = () => {
           transition: { duration: 0.2 },
         }}
         className="closeAdventure"
-        style={mapSceneValue ? { pointerEvents: "none" } : null}
+        style={mapScene ? { pointerEvents: "none" } : null}
         onClick={handleMapSceneToggle}
       ></motion.span>
     </div>

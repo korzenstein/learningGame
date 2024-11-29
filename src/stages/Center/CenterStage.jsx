@@ -1,16 +1,14 @@
 import Animals from "./puppets/Animals";
 import Fireflies from "./puppets/Fireflies";
-// import Mushroom from "./puppets/Mushroom";
 // Speech Bubbles
 import MoodBirdBubble from "./components/MoodBirdBubble";
 import BadgerBubble from "./components/BadgerBubble";
 import FoxBubble from "./components/FoxBubble";
-// import { Configuration, OpenAIApi } from "openai";
 import background from "./assets/transparentmini.png";
 import { useMemo } from "react";
 // Library Imports
 import { motion, AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
+import useAnimalStore from "../../store/useAnimalStore";
 
 const CenterStage = ({
   aiText,
@@ -24,15 +22,14 @@ const CenterStage = ({
     return <Animals />;
   }, []);
 
-  const moodbirdValue = useSelector((state) => state.animal.moodbird);
-  const badgerValue = useSelector((state) => state.animal.badger);
-  const foxValue = useSelector((state) => state.animal.fox);
-
-  console.log(badgerValue)
+  // Zustand state
+  const { moodbird, badger, fox } = useAnimalStore();
 
   return (
-    <motion.section 
-    style={{ backgroundColor: aiText }} className="stage">
+    <motion.section
+      style={{ backgroundColor: aiText }}
+      className="stage"
+    >
       <img
         className="inner backImg"
         src={background}
@@ -61,7 +58,7 @@ const CenterStage = ({
       />
       <Fireflies />
       <AnimatePresence>
-        {foxValue || badgerValue || moodbirdValue ? (
+        {fox || badger || moodbird ? (
           <motion.form
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

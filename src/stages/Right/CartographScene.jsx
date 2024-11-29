@@ -3,15 +3,15 @@ import Church from "./cartographPuppets/Church";
 import Boats from "./cartographPuppets/Boats";
 import Farmhouse from "./cartographPuppets/Farmhouse";
 import Cabin from "./cartographPuppets/Cabin";
-import { useSelector } from "react-redux";
+import useRightStore from "../../store/useRightStore";
 
 const CartographStage = () => {
-  const mapSceneValue = useSelector((state) => state.right.mapScene);
+   const { mapScene } = useRightStore();
 
   return (
     <motion.svg
       initial={{ opacity: 0 }}
-      animate={mapSceneValue ? { opacity: 1 } : { opacity: 0 }}
+      animate={mapScene ? { opacity: 1 } : { opacity: 0 }}
       exit={{ opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.3 }}
       xmlns="http://www.w3.org/2000/svg"

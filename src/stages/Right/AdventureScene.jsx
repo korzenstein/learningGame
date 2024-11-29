@@ -2,12 +2,11 @@ import { motion } from "framer-motion";
 import ChurchInterior from "./adventures/ChurchInterior";
 import FarmhouseInterior from "./adventures/FarmhouseInterior";
 import CabinInterior from "./adventures/CabinInterior";
-import { useSelector } from 'react-redux'
+import useRightStore from "../../store/useRightStore";
 
 
 const AdventureStage = () => {
-  const mapSceneValue = useSelector((state) => state.right.mapScene)
-  const adventureValue = useSelector((state) => state.right.adventure)
+    const { mapScene, adventure } = useRightStore();
 
   const advOptions = {
     cabinInterior: [
@@ -23,14 +22,14 @@ const AdventureStage = () => {
       className="adventures inner"
       initial={{ opacity: 0 }}
       animate={
-        mapSceneValue === false
+        mapScene === false
           ? { opacity: 1, zIndex: 100 }
           : { opacity: 0, zIndex: 20 }
       }
       exit={{ opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
-      {advOptions[adventureValue]}
+      {advOptions[adventure]}
     </motion.div>
   );
 };

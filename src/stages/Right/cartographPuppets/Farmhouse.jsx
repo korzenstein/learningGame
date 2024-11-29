@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { mapSceneOff, chooseAdventure } from "../../../features/rightSlice.js";
+import useRightStore from "../../../store/useRightStore";
 
 const Farmhouse = () => {
-  const dispatch = useDispatch();
+  const { mapSceneOff, chooseAdventure } = useRightStore();
 
   const handleImageChoice = (option) => {
-    dispatch(chooseAdventure(option));
-    dispatch(mapSceneOff());
+    chooseAdventure(option);
+    mapSceneOff();
   };
+
   return (
     <motion.g
       className="church inner"

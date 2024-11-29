@@ -1,43 +1,39 @@
 import { motion } from "framer-motion";
 import Mushroom from "./Mushroom";
-import { useDispatch } from "react-redux";
-import {toggleScenes} from "../../../features/leftSlice.js";
-import {toggleAnimals} from "../../../features/animalSlice.js";
+import useAnimalStore from "../../../store/useAnimalStore.js";
+import useLeftStore from "../../../store/useLeftStore.js";
 
 const Animals = () => {
-  const dispatch = useDispatch();
+    const { toggleScenes } = useLeftStore();
+  const { toggleAnimals } = useAnimalStore();
 
-  const handleForestBird = () => {
-    dispatch(toggleScenes({ scene: "forest" }));
-    dispatch(toggleAnimals({ animal: "forestbird" }));
+    const handleForestBird = () => {
+    toggleScenes("forest");
+    toggleAnimals("forestbird");
   };
 
   const handleBadger = () => {
-    dispatch(toggleScenes({ scene: "shoppe" }));
-    dispatch(toggleAnimals({ animal: "badger" }));
+    toggleScenes("shoppe");
+    toggleAnimals("badger");
   };
 
   const handleFox = () => {
-    dispatch(toggleAnimals({ animal: "fox" }));
+    toggleAnimals("fox");
   };
 
   const handleMoodBird = () => {
-    dispatch(toggleAnimals({ animal: "moodbird" }));
+    toggleAnimals("moodbird");
   };
 
   const handleCartoBird = () => {
-    dispatch(toggleScenes({ scene: "cartograph" }));
+    toggleScenes("cartograph");
   };
-
+  
   return (
     <svg
       className="badger inner"
       xmlns="http://www.w3.org/2000/svg"
       id="Layer_1"
-      // width='267.12'
-      // height='312.24'
-      // x='0'
-      // y='0'
       version="1.1"
       viewBox="0 0 267.12 312.24"
       xmlSpace="preserve"

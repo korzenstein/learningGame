@@ -2,16 +2,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import CartographBackground from "./cartographPuppets/CartographBackground";
 import AdventureScene from "./AdventureScene";
 import CartographScene from "./CartographScene";
-import { useSelector } from "react-redux";
+import useLeftStore from "../../store/useLeftStore";
 
 const RightStage = () => {
-  
-  const rightStageValue = useSelector((state) => state.left.cartographScene);
+    const { cartographScene } = useLeftStore();
+
 
   return (
     <motion.section className="information">
       <AnimatePresence>
-        {rightStageValue ? (
+        {cartographScene ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

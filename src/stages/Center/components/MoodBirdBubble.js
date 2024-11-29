@@ -1,27 +1,19 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import { useSelector } from "react-redux";
+import useAnimalStore from "../../../store/useAnimalStore"; 
 
-const MoodBirdBubble = ({ setAiText, aiText, toggleAPI,  userInput}) => {
+const MoodBirdBubble = ({ setAiText, aiText, toggleAPI, userInput }) => {
+  const { moodbird, moodbirdString } = useAnimalStore(); // Zustand store for moodbird state
 
-  const moodbirdValue = useSelector((state) => state.animal.moodbird);
-  const moodbirdStringValue = useSelector((state) => state.animal.moodbirdString);
-
-  const [concatPrompt, setConcatPrompt] = useState("")
-  
-  useEffect(() => {
-    setConcatPrompt(`The CSS code for a color ${userInput}:\nbackground-color: `)
-  }, [userInput])
-
-  // const [aiText, setAiText] = useState(undefined)
-
-//   useEffect(() => {
-//     setConcatPrompt(foxPrompt.concat(userInput))
-//   }, [userInput])
+  const [concatPrompt, setConcatPrompt] = useState("");
 
   useEffect(() => {
-    const moodBirdCall = async () => {   
+    setConcatPrompt(`The CSS code for a color ${userInput}:\nbackground-color: `);
+  }, [userInput]);
+
+  useEffect(() => {
+    const moodBirdCall = async () => {
       const configur = new Configuration({
         apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
       });
@@ -34,36 +26,33 @@ const MoodBirdBubble = ({ setAiText, aiText, toggleAPI,  userInput}) => {
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
-        // stop: ["\n"],
-      })
-      const tempColor = response.data.choices[0].text
-      const newColor = tempColor.replace(/[,;]$/,'');
-      setAiText(newColor)
-    }; 
-    
-    if (toggleAPI === true) {
-      moodBirdCall()
+      });
+      const tempColor = response.data.choices[0].text;
+      const newColor = tempColor.replace(/[,;]$/, ""); 
+      setAiText(newColor);
+    };
+
+    if (toggleAPI) {
+      moodBirdCall();
     }
-  }, [moodbirdStringValue])
+  }, [concatPrompt, toggleAPI, setAiText, moodbirdString]);
 
   return (
     <>
       <AnimatePresence>
-        {moodbirdValue ? (
+        {moodbird ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="inner moodBirdBubble"
           >
-
-            <p className="moodBirdText">
-              Tell me how you feel...
-            </p>
+            <p className="moodBirdText">Tell me how you feel...</p>
           </motion.div>
         ) : null}
       </AnimatePresence>
     </>
   );
 };
+
 export default MoodBirdBubble;

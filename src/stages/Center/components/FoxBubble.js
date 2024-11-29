@@ -2,20 +2,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import foxAI from "../data/foxAI";
-import { useSelector } from "react-redux";
+import useAnimalStore from "../../../store/useAnimalStore"; 
+
 
 const FoxBubble = ({ toggleAPI, userInput }) => {
   const foxPrompt = foxAI.prompt;
   const [concatPrompt, setConcatPrompt] = useState(foxPrompt);
   const [aiText, setAiText] = useState(undefined);
-  const foxValue = useSelector((state) => state.animal.fox);
-  const foxStringValue = useSelector((state) => state.animal.foxString);
 
-  // console.log(foxPrompt)
+  const { fox, foxString } = useAnimalStore();
 
   useEffect(() => {
     setConcatPrompt(foxPrompt.concat(userInput));
-  }, [userInput]);
+  }, [userInput, foxPrompt]);
 
   useEffect(() => {
     const call = async () => {
@@ -31,21 +30,19 @@ const FoxBubble = ({ toggleAPI, userInput }) => {
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
-        // stop: ["\n"],
       });
       setAiText(response.data.choices[0].text);
-      console.log(setAiText);
     };
 
-    if (toggleAPI === true) {
+    if (toggleAPI) {
       call();
     }
-  }, [foxStringValue]);
+  }, [concatPrompt, toggleAPI, foxString]);
 
   return (
     <>
       <AnimatePresence>
-        {foxValue ? (
+        {fox ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -66,4 +63,5 @@ const FoxBubble = ({ toggleAPI, userInput }) => {
     </>
   );
 };
+
 export default FoxBubble;

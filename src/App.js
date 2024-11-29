@@ -8,55 +8,44 @@ import InventoryNav from "./stages/Inventory/InventoryNav";
 // Library Imports
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useSelector, useDispatch } from "react-redux";
+import useAnimalStore from "./store/useAnimalStore.js";
 
-import {
-  converseMoodbird,
-  converseBadger,
-  converseFox,
-  toggleCenterStage,
-} from "./features/animalSlice.js";
+
 
 const App = () => {
-  const dispatch = useDispatch();
+
+  const {
+    animalChoice,
+    foxString,
+    badgerString,
+    moodbirdString,
+    converseFox,
+    converseBadger,
+    converseMoodbird,
+    toggleCenterStage,
+  } = useAnimalStore();
   // UserInput For Convo
   const [userInput, setUserInput] = useState("");
   const [toggleAPI, setToggleAPI] = useState(null);
   const [aiText, setAiText] = useState(undefined);
   const [sessionQuestions, setSessionQuestions] = useState([]);
-  // Animal Choice
-  const animalValue = useSelector((state) => state.animal.animalChoice);
-  // Animal Conversations
-  const foxStringValue = useSelector((state) => state.animal.foxString);
-  const badgerStringValue = useSelector((state) => state.animal.badgerString);
-  const moodbirdStringValue = useSelector(
-    (state) => state.animal.moodbirdString
-  );
 
+    // Handle conversation replies
   const getReply = (event) => {
     event.preventDefault();
     setToggleAPI(true);
 
-    if (animalValue === "fox") {
-      dispatch(converseFox(userInput));
-      setSessionQuestions((sessionQuestions) => [
-        ...sessionQuestions,
-        foxStringValue,
-      ]);
+    if (animalChoice === "fox") {
+      converseFox(userInput);
+      setSessionQuestions((prev) => [...prev, foxString]);
       event.target.reset();
-    } else if (animalValue === "badger") {
-      dispatch(converseBadger(userInput));
-      setSessionQuestions((sessionQuestions) => [
-        ...sessionQuestions,
-        badgerStringValue,
-      ]);
+    } else if (animalChoice === "badger") {
+      converseBadger(userInput);
+      setSessionQuestions((prev) => [...prev, badgerString]);
       event.target.reset();
-    } else if (animalValue === "moodBird") {
-      dispatch(converseMoodbird(userInput));
-      setSessionQuestions((sessionQuestions) => [
-        ...sessionQuestions,
-        moodbirdStringValue,
-      ]);
+    } else if (animalChoice === "moodBird") {
+      converseMoodbird(userInput);
+      setSessionQuestions((prev) => [...prev, moodbirdString]);
       event.target.reset();
     }
   };
@@ -75,7 +64,7 @@ const App = () => {
       }}
     >
       <div className="wrapper">
-        <h1 onClick={() => dispatch(toggleCenterStage())} className="title">
+        <h1 onClick={toggleCenterStage} className="title">
           Badger + Fox
         </h1>
         <LeftStage />

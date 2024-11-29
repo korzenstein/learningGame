@@ -1,11 +1,12 @@
 import forest from './assets/forest2.png'
 import { motion } from "framer-motion";
 import Sleepy from './forestPuppets/Sleepy'
-import {useSelector} from 'react-redux'
+import useForestStore from "../../store/useForestStore";
+
 
 const ForestScene = () => {
+  const { sleepyGhost } = useForestStore();
 
-const sleepyValue = useSelector((state) => state.forest.sleepyGhost);
 
 const forestVariants = {
   initial: { opacity: 0 },
@@ -19,7 +20,7 @@ const forestVariants = {
               className="forest inner"
               variants={forestVariants}
               initial="initial"
-              animate={sleepyValue ? "zoomin" : "standard"}
+              animate={sleepyGhost ? "zoomin" : "standard"}
               exit="exit"
               // transition={{ ease: "easeInOut", duration: 17, repeat: Infinity }}
               src={forest}

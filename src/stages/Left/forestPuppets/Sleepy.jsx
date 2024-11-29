@@ -1,10 +1,10 @@
-import {useDispatch} from "react-redux";
-import { toggleSleepy } from "../../../features/forestSlice.js";
+import useForestStore from "../../../store/useForestStore";
 
 const Sleepy = () => {
-  const dispatch = useDispatch();
-const handleSleepy = () => {
-    dispatch(toggleSleepy());
+  const { toggleSleepy } = useForestStore();
+
+  const handleSleepy = () => {
+    toggleSleepy();
     console.log('sleep')
   };
 

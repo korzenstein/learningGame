@@ -1,30 +1,28 @@
 import farmexterior from "../assets/farmexterior.png";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleMapScene } from "../../../features/rightSlice";
+import useRightStore from "../../../store/useRightStore";
 
 const FarmInterior = () => {
-  const mapSceneValue = useSelector((state) => state.right.mapScene)
-
-  const dispatch = useDispatch();
+  const { mapScene, toggleMapScene } = useRightStore();
 
   const handleMapSceneToggle = () => {
-    dispatch(toggleMapScene());
+    toggleMapScene();
   };
 
   return (
     <div className="farm">
-      <img src={farmexterior} alt="Cabin exterior" />
+      <img src={farmexterior} alt="Farm exterior" />
       <motion.span
         whileHover={{
           scale: 1.2,
           transition: { duration: 0.2 },
         }}
         className="closeAdventure"
-        style={mapSceneValue ? { pointerEvents: "none" } : null}
+        style={mapScene ? { pointerEvents: "none" } : null}
         onClick={handleMapSceneToggle}
       ></motion.span>
     </div>
   );
 };
+
 export default FarmInterior;
