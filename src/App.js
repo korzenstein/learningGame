@@ -10,8 +10,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import useAnimalStore from "./store/useAnimalStore.js";
 
-
-
 const App = () => {
 
   const {
@@ -71,6 +69,7 @@ const App = () => {
         <InventoryNav/>
         <CenterStage
           {...{
+            setToggleAPI,
             aiText,
             toggleAPI,
             userInput,

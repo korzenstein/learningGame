@@ -1,57 +1,51 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Configuration, OpenAIApi } from "openai";
-import useAnimalStore from "../../../store/useAnimalStore"; 
+import useAnimalStore from "../../../store/useAnimalStore";
 
-const MoodBirdBubble = ({ setAiText, aiText, toggleAPI, userInput }) => {
-  const { moodbird, moodbirdString } = useAnimalStore(); // Zustand store for moodbird state
+const responses = [
+  { text: "Hmm, that's interesting.", color: "#a8dadc" },
+  { text: "I feel that too.", color: "#f4a261" },
+  { text: "What a peculiar thought!", color: "#e9c46a" },
+  { text: "That resonates with me.", color: "#2a9d8f" },
+  { text: "Tell me more about that.", color: "#264653" },
+];
 
-  const [concatPrompt, setConcatPrompt] = useState("");
+const MoodBirdBubble = ({ setAiText, toggleAPI, setToggleAPI, setUserInput, userInput }) => {
+  const { moodbird  } = useAnimalStore();
+  const [currentResponse, setCurrentResponse] = useState(null);
+
 
   useEffect(() => {
-    setConcatPrompt(`The CSS code for a color ${userInput}:\nbackground-color: `);
-  }, [userInput]);
-
-  useEffect(() => {
-    const moodBirdCall = async () => {
-      const configur = new Configuration({
-        apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
-      });
-      const openai = new OpenAIApi(configur);
-      const response = await openai.createCompletion({
-        model: "text-curie-001",
-        prompt: concatPrompt,
-        temperature: 0.9,
-        max_tokens: 7,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      });
-      const tempColor = response.data.choices[0].text;
-      const newColor = tempColor.replace(/[,;]$/, ""); 
-      setAiText(newColor);
-    };
-
-    if (toggleAPI) {
-      moodBirdCall();
+    if (toggleAPI && moodbird) {
+      // Generate a random response
+      const randomResponse =
+        responses[Math.floor(Math.random() * responses.length)];
+      setCurrentResponse(randomResponse);
+      setAiText(randomResponse.color); // Update background color in parent
+setUserInput("");
+      // Reset toggleAPI to allow new inputs
+      setTimeout(() => {
+        setToggleAPI(false);
+      }, 100); 
     }
-  }, [concatPrompt, toggleAPI, setAiText, moodbirdString]);
+  }, [setAiText, toggleAPI, setToggleAPI, moodbird]);
 
+  console.log('userInput', userInput)
   return (
-    <>
-      <AnimatePresence>
-        {moodbird ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="inner moodBirdBubble"
-          >
-            <p className="moodBirdText">Tell me how you feel...</p>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </>
+    <AnimatePresence>
+      {moodbird ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="inner moodBirdBubble"
+        >
+          <p className="moodBirdText">
+            {currentResponse ? currentResponse.text : "Tell me how you feel..."}
+          </p>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   );
 };
 

@@ -17,6 +17,7 @@ const CenterStage = ({
   setAiText,
   setUserInput,
   getReply,
+  setToggleAPI,
 }) => {
   const animalMemo = useMemo(() => {
     return <Animals />;
@@ -54,6 +55,8 @@ const CenterStage = ({
           setAiText,
           userInput,
           toggleAPI,
+          setToggleAPI,
+          setUserInput
         }}
       />
       <Fireflies />

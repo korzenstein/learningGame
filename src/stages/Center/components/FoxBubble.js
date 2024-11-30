@@ -1,65 +1,58 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Configuration, OpenAIApi } from "openai";
-import foxAI from "../data/foxAI";
+import {  useState , useEffect} from "react";
 import useAnimalStore from "../../../store/useAnimalStore"; 
+import fetchFoxResponse from "../../../utils/api/fetchFoxResponse";
 
+const staticResponses = {
+  default: "Allo there! I am the Fox. Please enjoy my music. Please, ask me any questions you have.",
+  noInput: "It seems like you haven't asked a question. Please try asking something!",
+  inputTooLong: "Your question is too long! Please limit it to 100 characters.",
+  error: "I'm having trouble responding right now. Please try again later.",
+};
 
 const FoxBubble = ({ toggleAPI, userInput }) => {
-  const foxPrompt = foxAI.prompt;
-  const [concatPrompt, setConcatPrompt] = useState(foxPrompt);
-  const [aiText, setAiText] = useState(undefined);
+  const [aiText, setAiText] = useState(staticResponses.default);
 
-  const { fox, foxString } = useAnimalStore();
+  const { fox, animalChoice } = useAnimalStore();
 
-  useEffect(() => {
-    setConcatPrompt(foxPrompt.concat(userInput));
-  }, [userInput, foxPrompt]);
 
-  useEffect(() => {
-    const call = async () => {
-      const configur = new Configuration({
-        apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
-      });
-      const openai = new OpenAIApi(configur);
-      const response = await openai.createCompletion({
-        model: "text-curie-001",
-        prompt: concatPrompt,
-        temperature: 0.9,
-        max_tokens: 100,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      });
-      setAiText(response.data.choices[0].text);
-    };
-
-    if (toggleAPI) {
-      call();
+  const getResponse = async (input) => {
+    try {
+      if (!input) {
+        setAiText(staticResponses.noInput);
+        return;
+      }
+      if (input.length > 100) {
+        setAiText(staticResponses.inputTooLong);
+        return;
+      }
+      const response = await fetchFoxResponse(input);
+      setAiText(response);
+    } catch (error) {
+      console.error("Failed to fetch Fox response:", error);
+      setAiText(staticResponses.error);
     }
-  }, [concatPrompt, toggleAPI, foxString]);
+  };
 
+  useEffect(() => {
+    if (toggleAPI && userInput) {
+      getResponse(userInput);
+    }
+  }, [toggleAPI, userInput]);
   return (
     <>
       <AnimatePresence>
-        {fox ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="inner foxBubble"
-          >
-            {toggleAPI && aiText !== undefined ? (
-              <p className="foxText">{aiText}</p>
-            ) : (
-              <p className="foxText">
-                Allo there! I am the Fox. Please enjoy my music. Please, ask me
-                any questions you have.
-              </p>
-            )}
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      {fox && animalChoice === "fox" ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="inner foxBubble"
+        >
+          <p className="foxText">{aiText}</p>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
     </>
   );
 };
