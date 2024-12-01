@@ -23,7 +23,9 @@
     position: relative;
     // height: 100%;
     .title {
+      cursor: pointer;
       position: absolute;
+      padding-right: 2rem;
       right: 0;
       bottom: 0;
       font-size: 1rem;
@@ -42,11 +44,11 @@
       place-items: center;
       grid-template-areas: "inner-div";
       position: relative;
-      border-radius: 40px;
+      border-radius: 30px;
       .inner {
         grid-area: inner-div;
         width: 100%;
-        border-radius: 40px;
+        border-radius: 30px;
       }
       .backImg {
         z-index: 10;

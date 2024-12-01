@@ -1,0 +1,39 @@
+.nav {
+  position: absolute;
+    width: 15%;
+    height: 50px;
+    border-radius: 20px;
+    left: 0;
+    bottom: 0;
+    // border: 1px solid rgb(150, 150, 150);
+  .inventory {
+    width: 100%;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // overflow: hidden;
+      margin: 0;
+        height: 100%;
+  
+      .navItems {
+        display: block;
+        width: 30px;
+        height: 30px;
+        .icons {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          cursor: pointer;
+  
+          p {
+            position: absolute;
+            top: -2px;
+            left: 9px;
+            font-size: 10px;
+          }
+        }
+      }
+    }
+}
