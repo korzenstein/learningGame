@@ -10,10 +10,14 @@ const responses = [
   { text: "Tell me more about that.", color: "#264653" },
 ];
 
-const MoodBirdBubble = ({ setAiText, toggleAPI, setToggleAPI, setUserInput, userInput }) => {
-  const { moodbird  } = useAnimalStore();
+const MoodBirdBubble = ({
+  setAiText,
+  toggleAPI,
+  setToggleAPI,
+  setUserInput,
+}) => {
+  const { moodbird } = useAnimalStore();
   const [currentResponse, setCurrentResponse] = useState(null);
-
 
   useEffect(() => {
     if (toggleAPI && moodbird) {
@@ -22,15 +26,15 @@ const MoodBirdBubble = ({ setAiText, toggleAPI, setToggleAPI, setUserInput, user
         responses[Math.floor(Math.random() * responses.length)];
       setCurrentResponse(randomResponse);
       setAiText(randomResponse.color); // Update background color in parent
-setUserInput("");
+      setUserInput("");
       // Reset toggleAPI to allow new inputs
       setTimeout(() => {
         setToggleAPI(false);
-      }, 100); 
+      }, 100);
     }
   }, [setAiText, toggleAPI, setToggleAPI, moodbird]);
 
-  console.log('userInput', userInput)
+  console.log("toggleAPI", toggleAPI);
   return (
     <AnimatePresence>
       {moodbird ? (

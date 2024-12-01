@@ -26,7 +26,6 @@ const App = () => {
   const [userInput, setUserInput] = useState("");
   const [toggleAPI, setToggleAPI] = useState(null);
   const [aiText, setAiText] = useState(undefined);
-  const [sessionQuestions, setSessionQuestions] = useState([]);
 
     // Handle conversation replies
   const getReply = (event) => {
@@ -35,15 +34,12 @@ const App = () => {
 
     if (animalChoice === "fox") {
       converseFox(userInput);
-      setSessionQuestions((prev) => [...prev, foxString]);
       event.target.reset();
     } else if (animalChoice === "badger") {
       converseBadger(userInput);
-      setSessionQuestions((prev) => [...prev, badgerString]);
       event.target.reset();
     } else if (animalChoice === "moodBird") {
       converseMoodbird(userInput);
-      setSessionQuestions((prev) => [...prev, moodbirdString]);
       event.target.reset();
     }
   };
@@ -69,7 +65,6 @@ const App = () => {
         <InventoryNav/>
         <CenterStage
           {...{
-            setToggleAPI,
             aiText,
             toggleAPI,
             userInput,
