@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import useAnimalStore from "../../../store/useAnimalStore";
+import useAnimalStore from "store/useAnimalStore";
 
 const responses = [
   { text: "Hmm, that's interesting.", color: "#a8dadc" },

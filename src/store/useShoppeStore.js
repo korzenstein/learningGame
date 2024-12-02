@@ -1,23 +1,23 @@
 import { create } from "zustand";
 
-import SachelImage from "../stages/Left/shoppeItems/Sachel.png";
-import GloveImage from "../stages/Left/shoppeItems/Glove.png";
-import MortarImage from "../stages/Left/shoppeItems/Mortar.png";
-import MugImage from "../stages/Left/shoppeItems/Mug.png";
-import BranchesImage from "../stages/Left/shoppeItems/Branches.png";
-import BlackAshImage from "../stages/Left/shoppeItems/BlackAsh.png";
-import RationsImage from "../stages/Left/shoppeItems/Rations.png";
+import SachelImage from "containers/Left/shoppeItems/Sachel.png";
+import GloveImage from "containers/Left/shoppeItems/Glove.png";
+import MortarImage from "containers/Left/shoppeItems/Mortar.png";
+import MugImage from "containers/Left/shoppeItems/Mug.png";
+import BranchesImage from "containers/Left/shoppeItems/Branches.png";
+import BlackAshImage from "containers/Left/shoppeItems/BlackAsh.png";
+import RationsImage from "containers/Left/shoppeItems/Rations.png";
 
 
-import VialA from "../stages/Left/shoppeItems/VialA";
-import VialB from "../stages/Left/shoppeItems/VialB";
-import VialC from "../stages/Left/shoppeItems/VialC";
-import Pencil from "../stages/Left/shoppeItems/Pencil";
-import WhiteWillow from "../stages/Left/shoppeItems/WhiteWillow";
-import Book from "../stages/Left/shoppeItems/Book";
-import Coffee from "../stages/Left/shoppeItems/Coffee";
-import Shears from "../stages/Left/shoppeItems/Shears";
-import Mushrooms from "../stages/Left/shoppeItems/Mushrooms";
+import VialA from "containers/Left/shoppeItems/VialA";
+import VialB from "containers/Left/shoppeItems/VialB";
+import VialC from "containers/Left/shoppeItems/VialC";
+import Pencil from "containers/Left/shoppeItems/Pencil";
+import WhiteWillow from "containers/Left/shoppeItems/WhiteWillow";
+import Book from "containers/Left/shoppeItems/Book";
+import Coffee from "containers/Left/shoppeItems/Coffee";
+import Shears from "containers/Left/shoppeItems/Shears";
+import Mushrooms from "containers/Left/shoppeItems/Mushrooms";
 
 const useShoppeStore = create((set, get) => ({
   userChoice: "",

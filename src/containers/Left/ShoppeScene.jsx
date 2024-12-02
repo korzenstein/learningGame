@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import useShoppeStore from "../../store/useShoppeStore";
+import useShoppeStore from "store/useShoppeStore";
 
 const ShoppeInner = () => {
   const { items, chooseItem } = useShoppeStore();

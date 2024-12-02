@@ -1,4 +1,4 @@
-import useForestStore from "../../../store/useForestStore";
+import useForestStore from "store/useForestStore";
 
 const Sleepy = () => {
   const { toggleSleepy } = useForestStore();

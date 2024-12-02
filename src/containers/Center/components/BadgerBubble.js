@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import useAnimalStore from "../../../store/useAnimalStore"; 
-import fetchBadgerResponse from "../../../utils/api/fetchBadgerResponse";
+import useAnimalStore from "store/useAnimalStore"; 
+import fetchBadgerResponse from "utils/api/fetchBadgerResponse";
 
 const staticResponses = {
   default: "Why hello there! Welcome to my shoppe in the woods. Please, ask me any questions you have.",

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import NavItems from "./NavItems";
-import useAnimalStore from "../../store/useAnimalStore";
+import useAnimalStore from "store/useAnimalStore";
 const InventoryNav = () => {
   const { title } = useAnimalStore();
 

@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import {  useState , useEffect} from "react";
-import useAnimalStore from "../../../store/useAnimalStore"; 
-import fetchFoxResponse from "../../../utils/api/fetchFoxResponse";
+import useAnimalStore from "store/useAnimalStore"; 
+import fetchFoxResponse from "utils/api/fetchFoxResponse";
 
 const staticResponses = {
   default: "Allo there! I am the Fox. Please enjoy my music. Please, ask me any questions you have.",

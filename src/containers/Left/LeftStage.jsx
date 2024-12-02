@@ -2,9 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMemo } from "react";
 import ShoppeScene from "./ShoppeScene";
 import ForestScene from "./ForestScene";
-import useLeftStore from "../../store/useLeftStore";
-import useAnimalStore from "../../store/useAnimalStore";
-import useShoppeStore from "../../store/useShoppeStore";
+import useLeftStore from "store/useLeftStore";
+import useAnimalStore from "store/useAnimalStore";
+import useShoppeStore from "store/useShoppeStore";
 
 const LeftStage = () => {
 

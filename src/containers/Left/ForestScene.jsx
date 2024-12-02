@@ -1,7 +1,7 @@
 import forest from './assets/forest2.png'
 import { motion } from "framer-motion";
 import Sleepy from './forestPuppets/Sleepy'
-import useForestStore from "../../store/useForestStore";
+import useForestStore from "store/useForestStore";
 
 
 const ForestScene = () => {

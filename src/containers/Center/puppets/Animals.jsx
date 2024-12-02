@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Mushroom from "./Mushroom";
-import useAnimalStore from "../../../store/useAnimalStore.js";
-import useLeftStore from "../../../store/useLeftStore.js";
+import useAnimalStore from "store/useAnimalStore.js";
+import useLeftStore from "store/useLeftStore.js";
 
 const Animals = () => {
     const { toggleScenes } = useLeftStore();
