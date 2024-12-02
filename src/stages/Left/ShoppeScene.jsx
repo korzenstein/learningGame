@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Fragment } from "react";
 import useShoppeStore from "../../store/useShoppeStore";
 
 const ShoppeInner = () => {
@@ -24,13 +23,25 @@ const ShoppeInner = () => {
         {items?.map((item, index) => (
           <motion.g
             className="itemImages"
-            id={item?.name}
+            id={item?.id}
             key={index}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
             onClick={() => handleUserChoice(item)}
           >
-            <Fragment key={index}>{item?.component}</Fragment>
+            {typeof item.component === "string" ? (
+              <motion.image
+                href={item.component} 
+                x={item.x} 
+                y={item.y}
+                width={item.width}
+                height={item.height}
+                alt={item.name}
+                onClick={() => handleUserChoice(item)}
+              />
+            ) : (
+              item.component
+            )}
           </motion.g>
         ))}
       </g>

@@ -1,32 +1,38 @@
 import { create } from "zustand";
 
+import SachelImage from "../stages/Left/shoppeItems/Sachel.png";
+import GloveImage from "../stages/Left/shoppeItems/Glove.png";
+import MortarImage from "../stages/Left/shoppeItems/Mortar.png";
+import MugImage from "../stages/Left/shoppeItems/Mug.png";
+import BranchesImage from "../stages/Left/shoppeItems/Branches.png";
+import BlackAshImage from "../stages/Left/shoppeItems/BlackAsh.png";
+import RationsImage from "../stages/Left/shoppeItems/Rations.png";
+
+
 import VialA from "../stages/Left/shoppeItems/VialA";
 import VialB from "../stages/Left/shoppeItems/VialB";
 import VialC from "../stages/Left/shoppeItems/VialC";
-import Gloves from "../stages/Left/shoppeItems/Gloves";
-import Mug from "../stages/Left/shoppeItems/Mug";
 import Pencil from "../stages/Left/shoppeItems/Pencil";
-import Branches from "../stages/Left/shoppeItems/Branches";
 import WhiteWillow from "../stages/Left/shoppeItems/WhiteWillow";
-import BlackAsh from "../stages/Left/shoppeItems/BlackAsh";
 import Book from "../stages/Left/shoppeItems/Book";
 import Coffee from "../stages/Left/shoppeItems/Coffee";
 import Shears from "../stages/Left/shoppeItems/Shears";
-import Rations from "../stages/Left/shoppeItems/Rations";
 import Mushrooms from "../stages/Left/shoppeItems/Mushrooms";
-import MortarPestal from "../stages/Left/shoppeItems/MortarPestal";
-import Sachel from "../stages/Left/shoppeItems/Sachel";
 
-const useShoppe = create((set, get) => ({
+const useShoppeStore = create((set, get) => ({
   userChoice: "",
   items: [
     {
-      component: <BlackAsh />,
+      component: BlackAshImage,
       id: "BlackAsh",
       amount: 22,
       price: 12,
       name: "Black Ash",
       spiel: `Parts of the great Black Ash that was cut down.`,
+      x: 1000,
+      y: 350,
+      height: 580,
+      width: 200
     },
     {
       component: <Book />,
@@ -37,12 +43,16 @@ const useShoppe = create((set, get) => ({
       spiel: "Can be combined",
     },
     {
-      component: <Branches />,
+      component: BranchesImage,
       id: "Branches",
       amount: 30,
       price: 18,
       name: "Ancient Branches",
       spiel: `The Branches of the Ancient hold a special power`,
+      x: 450,
+      y: 100,
+      height: 280,
+      width: 350
     },
     {
       component: <Coffee />,
@@ -53,28 +63,40 @@ const useShoppe = create((set, get) => ({
       spiel: `It's coffee and it's great - drink up!`,
     },
     {
-      component: <Gloves />,
+      component: GloveImage,
       id: "Gloves",
       amount: 3,
       price: 55,
       name: "Gloves of Leather",
       spiel: `The Gloves of Leather provide protection from elements both earthly and mystical. They also increase casting abilities 3-fold.`,
+      x: 450,
+      y: 1000,
+      height: 280,
+      width: 250
     },
     {
-      component: <MortarPestal />,
+      component: MortarImage,
       id: "MortarPestal",
       amount: 3,
       price: 85,
       name: "Mortar & Pestle",
       spiel: `This Mortar & Pestle is heavy duty, allowing you to combine ingredients to craft new creations.`,
+      x: 550,
+      y: 380,
+      height: 190,
+      width: 220
     },
     {
-      component: <Mug />,
+      component: MugImage,
       id: "Mug",
       amount: 5,
       price: 22,
       name: "Mug",
       spiel: `Can't have coffee if you've got no mug`,
+      x: 750,
+      y: 890,
+      height: 200,
+      width: 300
     },
     {
       component: <Mushrooms />,
@@ -93,20 +115,28 @@ const useShoppe = create((set, get) => ({
       spiel: `Keep track of your stories with this here pencil`,
     },
     {
-      component: <Rations />,
+      component: RationsImage,
       id: "Rations",
       amount: 14,
       price: 55,
       name: "Rations",
       spiel: `More food for thought`,
+      x: 190,
+      y: 1230,
+      height: 300,
+      width: 700
     },
     {
-      component: <Sachel />,
+      component: SachelImage,
       id: "Sachel",
       amount: 2,
       price: 210,
       name: "Travel Sachel",
       spiel: "Can be combined",
+      x: 80,
+      y: 80,
+      height: 700,
+      width: 400
     },
     {
       component: <Shears />,
@@ -153,4 +183,4 @@ const useShoppe = create((set, get) => ({
   chooseItem: (itemID) => set({ userChoice: itemID }),
 }));
 
-export default useShoppe;
+export default useShoppeStore;
